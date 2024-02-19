@@ -44,6 +44,8 @@ public class UserSignUp {
 	private UserMedicalInfo userMedicalInfo;
 	
 
+	@OneToOne(cascade = CascadeType.ALL , orphanRemoval = true)
+	private Login userLogin;
 	
 
 }

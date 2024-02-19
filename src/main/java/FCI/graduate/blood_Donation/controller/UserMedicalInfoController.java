@@ -13,20 +13,25 @@ import FCI.graduate.blood_Donation.entity.UserMedicalInfo;
 import FCI.graduate.blood_Donation.entity.UserSignUp;
 import FCI.graduate.blood_Donation.service.UserMedicalInfoService;
 import FCI.graduate.blood_Donation.service.UserSignUpService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/Medical")
+@Tag(name = "User Medical Information")
 public class UserMedicalInfoController {
 	
 	@Autowired
 	private UserMedicalInfoService userMedicalInfoService;
 	
 	@PostMapping("/add")
+	@Operation(summary = "Add User Medical Information")
 	public UserMedicalInfo addUser(@RequestBody UserMedicalInfo user) {
 		return userMedicalInfoService.addUser(user);
 	}
 	
 	@PutMapping("/update")
+	@Operation(summary = "Update User Medical Information")
 	public UserMedicalInfo updateUser(@RequestBody UserMedicalInfo user) {
 		return userMedicalInfoService.updateUser(user);
 	}
