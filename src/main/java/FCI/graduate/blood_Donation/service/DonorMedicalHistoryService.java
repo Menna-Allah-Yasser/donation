@@ -3,32 +3,29 @@ package FCI.graduate.blood_Donation.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import FCI.graduate.blood_Donation.entity.UserMedicalInfo;
-import FCI.graduate.blood_Donation.entity.UserSignUp;
-import FCI.graduate.blood_Donation.repository.UserMedicalInfoRepo;
+import FCI.graduate.blood_Donation.entity.DonorMedicalHistory;
+import FCI.graduate.blood_Donation.entity.Donor;
+import FCI.graduate.blood_Donation.repository.DonorMedicalHistoryRepo;
 
 @Service
-public class UserMedicalInfoService {
+public class DonorMedicalHistoryService {
 	
 	@Autowired
-	private UserMedicalInfoRepo userMedicalInfoRepo;
+	private DonorMedicalHistoryRepo userMedicalInfoRepo;
 	
 
-	public UserMedicalInfo getUserByEmail(String email) {
+	public DonorMedicalHistory getUserByEmail(String email) {
 		return userMedicalInfoRepo.findById(email).orElseThrow();
 	}
 	
-	public UserMedicalInfo addUser(UserMedicalInfo user) {
+	public DonorMedicalHistory addUser(DonorMedicalHistory user) {
 		return userMedicalInfoRepo.save(user);
 	}
 	
-	public UserMedicalInfo updateUser(UserMedicalInfo user) {
+	public DonorMedicalHistory updateUser(DonorMedicalHistory user) {
 		
-		UserMedicalInfo oldUser=getUserByEmail(user.getEmail());
+		DonorMedicalHistory oldUser=getUserByEmail(user.getEmail());
 		
-		if(user.getBloodType()==null) {
-			user.setBloodType(oldUser.getBloodType());
-		}
 		
 		if(user.getLastDonateTime()==null) {
 			user.setLastDonateTime(oldUser.getLastDonateTime());

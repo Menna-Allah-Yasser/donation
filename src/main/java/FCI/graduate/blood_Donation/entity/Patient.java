@@ -2,7 +2,6 @@ package FCI.graduate.blood_Donation.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,12 +15,16 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class Login {
+public class Patient {
 	
 	@Id
 	@NonNull
 	private String email;
 	
-	private String password;
+	private String bloodType;
+	
+	private int amount;
+	
+	
 
 }

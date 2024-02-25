@@ -9,28 +9,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import FCI.graduate.blood_Donation.entity.UserSignUp;
-import FCI.graduate.blood_Donation.service.UserSignUpService;
+import FCI.graduate.blood_Donation.entity.Donor;
+import FCI.graduate.blood_Donation.service.DonorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/Users")
 @Tag(name = "User SignUp")
-public class UserSignUpController {
+public class DonorController {
 	
 	@Autowired
-	private UserSignUpService userSignUpService;
+	private DonorService userSignUpService;
 	
 	@PostMapping("/add")
 	@Operation(summary = "Add User Personal Information ")
-	public UserSignUp addUser(@RequestBody UserSignUp user) {
+	public Donor addUser(@RequestBody Donor user) {
 		return userSignUpService.addUser(user);
 	}
 	
 	@PutMapping("/update")
 	@Operation(summary = "Update User Personal Information ")
-	public UserSignUp updateUser(@RequestBody UserSignUp user) {
+	public Donor updateUser(@RequestBody Donor user) {
 		return userSignUpService.updateUser(user);
 	}
 	

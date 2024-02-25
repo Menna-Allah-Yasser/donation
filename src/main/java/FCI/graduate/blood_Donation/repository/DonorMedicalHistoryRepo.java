@@ -3,9 +3,9 @@ package FCI.graduate.blood_Donation.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import FCI.graduate.blood_Donation.entity.UserSignUp;
+import FCI.graduate.blood_Donation.entity.DonorMedicalHistory;
 
 @Repository
-public interface UserSignUpRepo extends JpaRepository<UserSignUp, String>{
+public interface DonorMedicalHistoryRepo extends JpaRepository<DonorMedicalHistory, String>{
 
 }

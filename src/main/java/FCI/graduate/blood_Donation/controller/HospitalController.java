@@ -12,37 +12,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import FCI.graduate.blood_Donation.entity.HospitalSignUp;
-import FCI.graduate.blood_Donation.entity.UserSignUp;
-import FCI.graduate.blood_Donation.service.HospitalSignUpService;
+import FCI.graduate.blood_Donation.entity.Hospital;
+import FCI.graduate.blood_Donation.entity.Donor;
+import FCI.graduate.blood_Donation.service.HospitalService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/Hospitals")
 @Tag(name = "Hospital SignUp ")
-public class HospitalSignUpController {
+public class HospitalController {
 	
 	@Autowired
-	private HospitalSignUpService hospitalSignUpService;
+	private HospitalService hospitalSignUpService;
 	
 	
 	@GetMapping("")
 	@Operation(summary = "All avilable Hospitals ")
-	public List<HospitalSignUp> getAllHospitals(){
+	public List<Hospital> getAllHospitals(){
 		return hospitalSignUpService.getAllHospitals();
 	}
 	
 	@PostMapping("/add")
 	@Operation(summary = "Add Hospital")
-	public HospitalSignUp addHospital(@RequestBody  HospitalSignUp hospital) {
+	public Hospital addHospital(@RequestBody  Hospital hospital) {
 		return hospitalSignUpService.addHospital(hospital);
 	}
 	
 
 	@PutMapping("/update")
 	@Operation(summary = "Update Hospital Information ")
-	public HospitalSignUp updateHospital(@RequestBody HospitalSignUp hospital) {
+	public Hospital updateHospital(@RequestBody Hospital hospital) {
 		return hospitalSignUpService.updateHospital(hospital);
 	}
 	

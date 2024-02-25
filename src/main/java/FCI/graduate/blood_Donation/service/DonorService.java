@@ -1,39 +1,46 @@
 package FCI.graduate.blood_Donation.service;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import FCI.graduate.blood_Donation.entity.Login;
-import FCI.graduate.blood_Donation.entity.UserSignUp;
+import FCI.graduate.blood_Donation.entity.Donor;
+import FCI.graduate.blood_Donation.entity.DonorMedicalHistory;
 import FCI.graduate.blood_Donation.repository.LoginRepo;
-import FCI.graduate.blood_Donation.repository.UserSignUpRepo;
+import FCI.graduate.blood_Donation.repository.DonorRepo;
 
 @Service
-public class UserSignUpService {
+public class DonorService {
 	
 	@Autowired
-	private UserSignUpRepo userSignUpRepo;
+	private DonorRepo userSignUpRepo;
 	
 	@Autowired
 	private  LoginRepo loginRepo;
 	
 	
-	public UserSignUp getUserByEmail(String email) {
+	public Donor getUserByEmail(String email) {
 		return userSignUpRepo.findById(email).orElseThrow();
 	}
 	
-	public UserSignUp addUser(UserSignUp user) {
+	public Donor addUser(Donor user) {
 
 		Login login = new Login(user.getEmail(), user.getPassword());
 		user.setUserLogin(login);
+		
+		DonorMedicalHistory donorMedicalHistory=new DonorMedicalHistory(user.getEmail());
+		user.setDonorMedicalHistory(donorMedicalHistory);
 
 		return userSignUpRepo.save(user);
 
 	}
 	
-	public UserSignUp updateUser(UserSignUp user) {
+	public Donor updateUser(Donor user) {
 		
-		UserSignUp oldUser=getUserByEmail(user.getEmail());
+		Donor oldUser=getUserByEmail(user.getEmail());
 		
 		if(user.getFirstName()==null) {
 			user.setFirstName(oldUser.getFirstName());
@@ -66,6 +73,24 @@ public class UserSignUpService {
 		if(user.getUserLogin()==null) {
 			user.setUserLogin(oldUser.getUserLogin());
 		}
+		
+		if(user.getBloodType()==null) {
+			user.setBloodType(oldUser.getBloodType());
+		}
+		
+		if(user.getAddress()==null) {
+			user.setAddress(oldUser.getAddress());
+		}
+		
+		if(user.getDonorMedicalHistory()==null) {
+			user.setDonorMedicalHistory(oldUser.getDonorMedicalHistory());
+		}
+		
+		if(Integer.compare(user.getCountDonates(), 0)==0) {
+			user.setCountDonates(oldUser.getCountDonates());
+		}
+		
+		
 		return userSignUpRepo.save(user);
 	}
 	

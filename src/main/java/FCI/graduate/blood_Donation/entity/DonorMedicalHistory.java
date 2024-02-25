@@ -9,6 +9,8 @@ import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -16,9 +18,11 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserMedicalInfo {
+@RequiredArgsConstructor
+public class DonorMedicalHistory {
 	
 	@Id
+	@NonNull
 	private String email;
 	
 	@Column(name = "surgery_last_3_months")
@@ -28,8 +32,6 @@ public class UserMedicalInfo {
 	private String dentist;
 	
 	private String chronicDisease;
-	
-	private String bloodType;
 	
 	private LocalDate lastDonateTime;
 	

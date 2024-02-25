@@ -1,14 +1,14 @@
 package FCI.graduate.blood_Donation.entity;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -16,36 +16,31 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserSignUp {
+@RequiredArgsConstructor
+public class Hospital {
 	
 	@Id
+	@NonNull
 	private String email;
 	
-	@Column(name = "pass")
+	private String name;
+	
 	private String password;
 	
-	@Column(name = "FName")
-	private String firstName;
+	private String zipCode;
 	
-	@Column(name = "LName")
-	private String lastName;
-	
-	@Column(name = "SSN")
-	private String nationalID;
-	
-	private String gender;
-	
-	private int age;
+	private String city;
 	
 	private String phone;
 	
-	@OneToOne(cascade = CascadeType.ALL , orphanRemoval = true)
-	@JoinColumn(name="medical_email")
-	private UserMedicalInfo userMedicalInfo;
+	private String type;
 	
 
 	@OneToOne(cascade = CascadeType.ALL , orphanRemoval = true)
 	private Login userLogin;
+	
+	@OneToOne(cascade = CascadeType.ALL , orphanRemoval = true)
+	private HospitalMedicalInfo hospitalMedicalInfo;
 	
 
 }

@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import FCI.graduate.blood_Donation.entity.Login;
-import FCI.graduate.blood_Donation.entity.UserMedicalInfo;
-import FCI.graduate.blood_Donation.entity.UserSignUp;
+import FCI.graduate.blood_Donation.entity.DonorMedicalHistory;
+import FCI.graduate.blood_Donation.entity.Donor;
 import FCI.graduate.blood_Donation.repository.LoginRepo;
 
 @Service
@@ -27,12 +27,6 @@ public class LoginService {
 	}
 
 	public Login updateLogin(Login login) {
-
-//		Login oldLogin  = getUserByEmail(login.getEmail());
-//		
-//		if(login.getPassword()==null) {
-//			login.setPassword(oldLogin.getPassword());
-//		}
 
 		return loginRepo.save(login);
 	}
