@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import FCI.graduate.blood_Donation.entity.Hospital;
@@ -50,6 +51,11 @@ public class HospitalController {
 	@Operation(summary = "Delate Hospital  ")
 	public void deleteHospital(@PathVariable String email) {
 		hospitalSignUpService.deleteHospital(email);
+	}
+	
+	@PutMapping("/updatePass")
+	public void updatePassword(@RequestParam String email ,@RequestParam String newPass) {
+		hospitalSignUpService.updatePassword(email, newPass);
 	}
 
 }

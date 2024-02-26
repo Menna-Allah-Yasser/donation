@@ -16,14 +16,14 @@ import FCI.graduate.blood_Donation.repository.DonorRepo;
 public class DonorService {
 	
 	@Autowired
-	private DonorRepo userSignUpRepo;
+	private DonorRepo donorRepo;
 	
 	@Autowired
 	private  LoginRepo loginRepo;
 	
 	
 	public Donor getUserByEmail(String email) {
-		return userSignUpRepo.findById(email).orElseThrow();
+		return donorRepo.findById(email).orElseThrow();
 	}
 	
 	public Donor addUser(Donor user) {
@@ -34,7 +34,7 @@ public class DonorService {
 		DonorMedicalHistory donorMedicalHistory=new DonorMedicalHistory(user.getEmail());
 		user.setDonorMedicalHistory(donorMedicalHistory);
 
-		return userSignUpRepo.save(user);
+		return donorRepo.save(user);
 
 	}
 	
@@ -91,11 +91,28 @@ public class DonorService {
 		}
 		
 		
-		return userSignUpRepo.save(user);
+		return donorRepo.save(user);
+	}
+	
+	public void updatePassword(String email , String newPass) {
+		loginRepo.updatePassword(email, newPass);
+		donorRepo.updatePassword(email, newPass);
+	}
+	
+	public void updatePhone (String email , String newPhone) {
+		donorRepo.updatePhone(email, newPhone);
+	}
+	
+	public void updateBloodType (String email , String newBloodType) {
+		donorRepo.updateBloodType(email, newBloodType);
+	}
+	
+	public void updateName (String email , String newFName ,String newLName ) {
+		donorRepo.updateName(email, newFName, newLName);
 	}
 	
 	public void deleteUser(String email) {
-		userSignUpRepo.deleteById(email);
+		donorRepo.deleteById(email);
 	}
 	
 	

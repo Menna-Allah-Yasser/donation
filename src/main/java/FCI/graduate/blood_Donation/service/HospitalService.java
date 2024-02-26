@@ -15,17 +15,17 @@ import FCI.graduate.blood_Donation.repository.LoginRepo;
 public class HospitalService {
 
 	@Autowired
-	private HospitalRepo hospitalSignUpRepo;
+	private HospitalRepo hospitalRepo;
 
 	@Autowired
 	private LoginRepo loginRepo;
 
 	public Hospital getHospitalByEmail(String email) {
-		return hospitalSignUpRepo.findById(email).orElseThrow();
+		return hospitalRepo.findById(email).orElseThrow();
 	}
 
 	public List<Hospital> getAllHospitals() {
-		return hospitalSignUpRepo.findAll();
+		return hospitalRepo.findAll();
 	}
 
 	public Hospital addHospital(Hospital hospital) {
@@ -36,7 +36,7 @@ public class HospitalService {
 		HospitalMedicalInfo hospitalMedicalInfo= new  HospitalMedicalInfo(hospital.getEmail() , 0 , 0 , 0 , 0 , 0 , 0  , 0 , 0);
         hospital.setHospitalMedicalInfo(hospitalMedicalInfo);
         
-		return hospitalSignUpRepo.save(hospital);
+		return hospitalRepo.save(hospital);
 	}
 
 	public Hospital updateHospital(Hospital hospital) {
@@ -112,11 +112,16 @@ public class HospitalService {
 			 */
 			hospital.setUserLogin(oldHospital.getUserLogin());
 		}
-		return hospitalSignUpRepo.save(hospital);
+		return hospitalRepo.save(hospital);
+	}
+	
+	public void updatePassword(String email , String newPass) {
+		loginRepo.updatePassword(email, newPass);
+		hospitalRepo.updatePassword(email, newPass);
 	}
 
 	public void deleteHospital(String email) {
-		hospitalSignUpRepo.deleteById(email);
+		hospitalRepo.deleteById(email);
 	}
 
 }
