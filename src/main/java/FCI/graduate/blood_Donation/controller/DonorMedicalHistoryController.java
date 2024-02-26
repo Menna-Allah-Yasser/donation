@@ -18,23 +18,22 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/Medical")
-@Tag(name = "User Medical Information")
+@Tag(name = "Donor Medical History")
 public class DonorMedicalHistoryController {
-	
+
 	@Autowired
 	private DonorMedicalHistoryService userMedicalInfoService;
-	
+
 	@PostMapping("/add")
 	@Operation(summary = "Add User Medical Information")
 	public DonorMedicalHistory addUser(@RequestBody DonorMedicalHistory user) {
 		return userMedicalInfoService.addUser(user);
 	}
-	
+
 	@PutMapping("/update")
 	@Operation(summary = "Update User Medical Information")
 	public DonorMedicalHistory updateUser(@RequestBody DonorMedicalHistory user) {
 		return userMedicalInfoService.updateUser(user);
 	}
-	
 
 }

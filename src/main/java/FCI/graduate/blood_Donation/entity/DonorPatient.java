@@ -16,7 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class Donate {
+public class DonorPatient {
 	
 	@Id
 	@NonNull
@@ -27,10 +27,7 @@ public class Donate {
 	@ManyToOne
 	private Donor donor;
 	
-	
 	@ManyToOne
-	private Hospital hospital;
-	
-	
+	private Patient patient;
 
 }

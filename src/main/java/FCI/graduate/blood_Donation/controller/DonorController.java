@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/Donor")
-@Tag(name = "User SignUp")
+@Tag(name = "Donor")
 public class DonorController {
 
 	@Autowired

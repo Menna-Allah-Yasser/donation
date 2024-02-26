@@ -2,6 +2,7 @@ package FCI.graduate.blood_Donation.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,12 +16,19 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class HospitalLocation {
+public class Points {
+	
+	private int points;
 	
 	@Id
 	@NonNull
-	private String email;
+	@ManyToOne
+	private Donor donor;
 	
-	private String location;
+	@Id
+	@NonNull
+	@ManyToOne
+	private Hospital hospital;
+	
 
 }

@@ -1,8 +1,11 @@
 package FCI.graduate.blood_Donation.entity;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,6 +35,8 @@ public class Hospital {
 	private String city;
 
 	private String phone;
+
+	private String location;
 
 	private String type;
 

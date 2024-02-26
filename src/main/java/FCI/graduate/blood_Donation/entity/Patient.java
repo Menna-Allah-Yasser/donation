@@ -2,6 +2,7 @@ package FCI.graduate.blood_Donation.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,8 @@ public class Patient {
 	
 	@Id
 	@NonNull
-	private String email;
+	@OneToOne
+	private Donor donor;
 	
 	private String bloodType;
 	
