@@ -20,47 +20,42 @@ import lombok.Setter;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Donor {
-	
+
 	@Id
 	@NonNull
 	private String email;
-	
+
 	@Column(name = "pass")
 	private String password;
-	
+
 	private String serialNumber;
-	
+
 	@Column(name = "FName")
 	private String firstName;
-	
+
 	@Column(name = "LName")
 	private String lastName;
-	
+
 	@Column(name = "SSN")
 	private String nationalID;
-	
-	private String gender;
-	
-	private int age;
-	
-	private String phone;
-	
-	private String address;
-	
-	private int countDonates;
-	
-	private String bloodType;
-	
-	
-	
-	
-	@OneToOne(cascade = CascadeType.ALL , orphanRemoval = true)
-	@JoinColumn(name="medical_email")
-	private DonorMedicalHistory donorMedicalHistory;
-	
 
-	@OneToOne(cascade = CascadeType.ALL , orphanRemoval = true)
+	private String gender;
+
+	private int age;
+
+	private String phone;
+
+	private String address;
+
+	private int countDonates;
+
+	private String bloodType;
+
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "medical_email")
+	private DonorMedicalHistory donorMedicalHistory;
+
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Login userLogin;
-	
 
 }

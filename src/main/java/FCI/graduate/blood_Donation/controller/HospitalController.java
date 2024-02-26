@@ -23,39 +23,38 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("/Hospitals")
 @Tag(name = "Hospital SignUp ")
 public class HospitalController {
-	
+
 	@Autowired
-	private HospitalService hospitalSignUpService;
-	
-	
+	private HospitalService hospitalService;
+
 	@GetMapping("")
 	@Operation(summary = "All avilable Hospitals ")
-	public List<Hospital> getAllHospitals(){
-		return hospitalSignUpService.getAllHospitals();
+	public List<Hospital> getAllHospitals() {
+		return hospitalService.getAllHospitals();
 	}
-	
+
 	@PostMapping("/add")
 	@Operation(summary = "Add Hospital")
-	public Hospital addHospital(@RequestBody  Hospital hospital) {
-		return hospitalSignUpService.addHospital(hospital);
+	public Hospital addHospital(@RequestBody Hospital hospital) {
+		return hospitalService.addHospital(hospital);
 	}
-	
 
-	@PutMapping("/update")
-	@Operation(summary = "Update Hospital Information ")
-	public Hospital updateHospital(@RequestBody Hospital hospital) {
-		return hospitalSignUpService.updateHospital(hospital);
-	}
-	
 	@DeleteMapping("/delete/{email}")
 	@Operation(summary = "Delate Hospital  ")
 	public void deleteHospital(@PathVariable String email) {
-		hospitalSignUpService.deleteHospital(email);
+		hospitalService.deleteHospital(email);
 	}
-	
-	@PutMapping("/updatePass")
-	public void updatePassword(@RequestParam String email ,@RequestParam String newPass) {
-		hospitalSignUpService.updatePassword(email, newPass);
+
+	@PutMapping("/update/pass")
+	@Operation(summary = "Update Hospital Password")
+	public void updatePassword(@RequestParam String email, @RequestParam String newPass) {
+		hospitalService.updatePassword(email, newPass);
+	}
+
+	@PutMapping("/update/phone")
+	@Operation(summary = "Update Hospital Phone")
+	public void updatePhone(String email, String newPhone) {
+		hospitalService.updatePhone(email, newPhone);
 	}
 
 }

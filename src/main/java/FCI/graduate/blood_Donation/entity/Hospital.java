@@ -18,29 +18,27 @@ import lombok.Setter;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Hospital {
-	
+
 	@Id
 	@NonNull
 	private String email;
-	
-	private String name;
-	
-	private String password;
-	
-	private String zipCode;
-	
-	private String city;
-	
-	private String phone;
-	
-	private String type;
-	
 
-	@OneToOne(cascade = CascadeType.ALL , orphanRemoval = true)
+	private String name;
+
+	private String password;
+
+	private String zipCode;
+
+	private String city;
+
+	private String phone;
+
+	private String type;
+
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Login userLogin;
-	
-	@OneToOne(cascade = CascadeType.ALL , orphanRemoval = true)
+
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private HospitalMedicalInfo hospitalMedicalInfo;
-	
 
 }
