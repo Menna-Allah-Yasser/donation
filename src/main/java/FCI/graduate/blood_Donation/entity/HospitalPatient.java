@@ -2,6 +2,7 @@ package FCI.graduate.blood_Donation.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +29,7 @@ public class HospitalPatient {
 	private Hospital hospital;
 
 	@ManyToOne
+	@JoinColumn(name = "patient_email")
 	private Patient patient;
 
 }
