@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
@@ -41,9 +42,11 @@ public class Hospital {
 	private String type;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@MapsId
 	private Login userLogin;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@MapsId
 	private HospitalMedicalInfo hospitalMedicalInfo;
 
 }

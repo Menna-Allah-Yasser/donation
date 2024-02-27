@@ -1,6 +1,8 @@
 package FCI.graduate.blood_Donation.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -21,7 +23,8 @@ public class HospitalPatient {
 
 	@Id
 	@NonNull
-	private String id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
 	private int stateCode;
 

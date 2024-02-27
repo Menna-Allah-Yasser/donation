@@ -1,9 +1,13 @@
 package FCI.graduate.blood_Donation.entity;
 
+import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +25,9 @@ public class DonorPatient {
 	
 	@Id
 	@NonNull
-	private String id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@SequenceGenerator(name = "Donor_Patient_GENERATOR", sequenceName = "Donor_Patient_id", initialValue = 1000)
+	private Long id;
 	
 	private int stateCode;
 	

@@ -20,5 +20,7 @@ public interface HospitalRepo extends JpaRepository<Hospital, String> {
 	@Transactional
 	@Query("UPDATE Hospital h SET h.phone = :newPhone WHERE h.email = :email")
 	void updatePhone(String email, String newPhone);
+	
+	
 
 }

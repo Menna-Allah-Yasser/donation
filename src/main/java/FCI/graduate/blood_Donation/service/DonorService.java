@@ -2,11 +2,13 @@ package FCI.graduate.blood_Donation.service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import FCI.graduate.blood_Donation.entity.Login;
+import FCI.graduate.blood_Donation.entity.Patient;
 import FCI.graduate.blood_Donation.entity.Donor;
 import FCI.graduate.blood_Donation.entity.DonorMedicalHistory;
 import FCI.graduate.blood_Donation.repository.LoginRepo;
@@ -32,6 +34,9 @@ public class DonorService {
 
 		DonorMedicalHistory donorMedicalHistory = new DonorMedicalHistory(user.getEmail());
 		user.setDonorMedicalHistory(donorMedicalHistory);
+		
+		Patient patient= new Patient(user.getEmail());
+		user.setPatient(patient);
 
 		return donorRepo.save(user);
 
@@ -56,6 +61,10 @@ public class DonorService {
 
 	public void deleteUser(String email) {
 		donorRepo.deleteById(email);
+	}
+	
+	public List<Donor> findByBloodType(String bloodType) {
+		return donorRepo.findByBloodType(bloodType);
 	}
 
 }

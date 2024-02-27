@@ -1,5 +1,7 @@
 package FCI.graduate.blood_Donation.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -30,5 +32,8 @@ public interface DonorRepo extends JpaRepository<Donor, String> {
 	@Transactional
 	@Query("UPDATE Donor d SET d.firstName = :newFName , d.lastName = :newLName WHERE d.email = :email")
 	void updateName(String email, String newFName, String newLName);
+	
+	
+	List<Donor> findByBloodType(String bloodType);
 
 }

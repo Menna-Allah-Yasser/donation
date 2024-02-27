@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -52,10 +53,19 @@ public class Donor {
 	private String bloodType;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "medical_email")
+	@MapsId
+	@JoinColumn(name = "email")
 	private DonorMedicalHistory donorMedicalHistory;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@MapsId
+	@JoinColumn(name = "email")
 	private Login userLogin;
+	
+
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@MapsId
+	@JoinColumn(name = "email")
+	private Patient patient;
 
 }
