@@ -29,7 +29,12 @@ public class DonorPatient {
 	//@SequenceGenerator(name = "Donor_Patient_GENERATOR", sequenceName = "Donor_Patient_id", initialValue = 1000)
 	private Long id;
 	
-	private int stateCode;
+	private int stateCode; // 0 patient request Blood   
+						   // 1 Donor Accept request 
+	                       // -1 Donor refused request
+	                      //  2 Donor donated  - checking - 
+	                      //  3 blood is confirmed
+	                      //  -3 blood refused
 	
 	@ManyToOne
 	private Donor donor;

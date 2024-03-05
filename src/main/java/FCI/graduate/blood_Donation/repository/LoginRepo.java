@@ -15,4 +15,8 @@ public interface LoginRepo extends JpaRepository<Login, String>{
 	@Transactional
 	@Query("UPDATE Login l SET l.password = :newPass WHERE l.email = :email")
 	void updatePassword(String email , String newPass);
+	
+	
+	@Query("SELECT l FROM Login l WHERE l.email = :email AND l.password=:password")
+	Login authentication(String email , String password);
 }

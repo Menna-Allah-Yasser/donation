@@ -35,5 +35,7 @@ public interface DonorRepo extends JpaRepository<Donor, String> {
 	
 	
 	List<Donor> findByBloodType(String bloodType);
+	
+	
 
 }

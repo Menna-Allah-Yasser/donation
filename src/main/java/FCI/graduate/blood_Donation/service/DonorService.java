@@ -66,5 +66,7 @@ public class DonorService {
 	public List<Donor> findByBloodType(String bloodType) {
 		return donorRepo.findByBloodType(bloodType);
 	}
+	
+	
 
 }

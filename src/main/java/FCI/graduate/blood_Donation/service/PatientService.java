@@ -74,34 +74,10 @@ public class PatientService {
 		requestBloodFromDonor(patient);
 		requestBloodFromHospital(patient);
 
-		/*
-		 * patientRepo.save(patient);
-		 * 
-		 * List<Donor> donors = donorRepo.findByBloodType(patient.getBloodType());
-		 * 
-		 * List<HospitalMedicalInfo> hospitals =
-		 * hospitalMedicalInfoRepo.findByBloodType(patient.getBloodType());
-		 * 
-		 * for (Donor i : donors) {
-		 * 
-		 * if (!(i.getEmail().equals(patient.getEmail()))) { DonorPatient donorPatient =
-		 * new DonorPatient(); donorPatient.setDonor(i);
-		 * donorPatient.setPatient(patient); donorPatient.setStateCode(0); // patient
-		 * request Blood donorPatientRepo.save(donorPatient); }
-		 * 
-		 * }
-		 * 
-		 * for (HospitalMedicalInfo i : hospitals) { HospitalPatient hospitalPatient =
-		 * new HospitalPatient(); hospitalPatient.setStateCode(0);
-		 * hospitalPatient.setPatient(patient);
-		 * 
-		 * Hospital hospital = new Hospital(i.getEmail());
-		 * hospitalPatient.setHospital(hospital);
-		 * 
-		 * hospitalPatientRepo.save(hospitalPatient); }
-		 */
 		
 	}
+	
+	
 
 	public List<Patient> getAll() {
 		return patientRepo.findAll();

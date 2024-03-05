@@ -1,6 +1,7 @@
 package FCI.graduate.blood_Donation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,6 +35,11 @@ public class LoginController {
 	@PutMapping("/update")
 	public void updatePassword(@RequestParam String email, @RequestParam String newPass) {
 		loginService.updatePassword(email, newPass);
+	}
+	
+	@GetMapping("")
+	public void authen(@RequestParam String email ,@RequestParam String password) {
+		 loginService.authen(email, password);
 	}
 
 }
