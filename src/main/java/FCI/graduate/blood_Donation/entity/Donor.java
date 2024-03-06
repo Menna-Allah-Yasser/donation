@@ -49,7 +49,6 @@ public class Donor {
 
 	private String address;
 
-	@Version
 	private int countDonates;
 
 	private String bloodType;

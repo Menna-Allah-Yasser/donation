@@ -33,4 +33,24 @@ public class DonorPatientController {
 	public void donorRefusedRequest (@PathVariable Long id) {
 		donorPatientService.donorRefusedRequest(id);
 	}
+	
+	@PutMapping("/Confirm/Donation/{id}")
+	public void confirmDonation (@PathVariable Long id) {
+		donorPatientService.confirmDonation(id);	
+	}
+	
+	
+	@PutMapping("/Blood/Confirm/{id}")
+	public void  bloodConfirmed(@PathVariable Long id ) {
+		donorPatientService.bloodConfirmed(id);
+	}
+	
+	
+	@PutMapping("/Blood/Refused/{id}")
+	public void  bloodRefused(@PathVariable Long id ) {
+		donorPatientService.bloodRefused(id);
+	}
+
+	
+	
 }

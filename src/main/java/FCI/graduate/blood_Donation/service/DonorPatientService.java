@@ -1,5 +1,7 @@
 package FCI.graduate.blood_Donation.service;
 
+import java.sql.Time;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,12 @@ public class DonorPatientService {
 	
 	@Autowired
 	private DonorMapper donorMapper;
+	
+	@Autowired
+	private DonorService donorService;
+	
+	@Autowired
+	private DonorMedicalHistoryService donorMedicalHistoryService;
 
 	public DonorPatient addRequest(DonorPatient donorPatient) {
 		return donorPatientRepo.save(donorPatient);
@@ -40,6 +48,35 @@ public class DonorPatientService {
 	
 	public void donorRefusedRequest (Long id) {
 		donorPatientRepo.donorRefusedRequest(id);
+	}
+	
+	public void confirmDonation (Long id) {
+		// update state Code to set = 2
+		donorPatientRepo.confirmDonation(id);
+		
+		
+		// update count Donates 
+		DonorPatient donorPatient=donorPatientRepo.findById(id).orElseThrow();
+		int count =donorService.getCountDonates(donorPatient.getDonor().getEmail());
+		count++;
+		donorPatient.getDonor().setCountDonates(count);
+		donorService.updateCountDonates(donorPatient.getDonor().getEmail(), count);
+		
+		// update last Donation time
+		donorMedicalHistoryService.updateLastDonateTime(donorPatient.getDonor().getEmail(), LocalDate.now());
+		
+		
+	}
+	
+	public void  bloodConfirmed(Long id ) {
+		donorPatientRepo.bloodConfirmed(id);
+	}
+	
+	public void  bloodRefused(Long id ) {
+		donorPatientRepo.bloodRefused(id);
+		DonorPatient donorPatient=donorPatientRepo.findById(id).orElseThrow();
+		
+		donorMedicalHistoryService.updateNote(donorPatient.getDonor().getEmail(), "message");
 	}
 
 }

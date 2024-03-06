@@ -34,8 +34,8 @@ public class DonorService {
 
 		DonorMedicalHistory donorMedicalHistory = new DonorMedicalHistory(user.getEmail());
 		user.setDonorMedicalHistory(donorMedicalHistory);
-		
-		Patient patient= new Patient(user.getEmail());
+
+		Patient patient = new Patient(user.getEmail());
 		user.setPatient(patient);
 
 		return donorRepo.save(user);
@@ -62,11 +62,18 @@ public class DonorService {
 	public void deleteUser(String email) {
 		donorRepo.deleteById(email);
 	}
-	
+
 	public List<Donor> findByBloodType(String bloodType) {
 		return donorRepo.findByBloodType(bloodType);
 	}
+
+	public int getCountDonates(String email) {
+		Donor donor = getDonorByEmail(email);
+		return donor.getCountDonates();
+	}
 	
-	
+	public void updateCountDonates(String email, int count) {
+		donorRepo.updateCountDonates(email, count);
+	}
 
 }

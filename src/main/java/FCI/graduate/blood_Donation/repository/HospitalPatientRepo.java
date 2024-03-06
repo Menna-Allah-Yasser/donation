@@ -20,4 +20,10 @@ public interface HospitalPatientRepo extends JpaRepository<HospitalPatient, Long
 	@Transactional
 	@Query("UPDATE HospitalPatient h SET h.stateCode = -1 WHERE h.id = :id")
 	void hospitalRefusedRequest (Long id );
+	
+	
+	@Modifying
+	@Transactional
+	@Query("UPDATE HospitalPatient h SET h.stateCode = 2 WHERE h.id = :id")
+	void tookBlood (Long id);
 }

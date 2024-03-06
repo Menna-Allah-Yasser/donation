@@ -19,6 +19,10 @@ public class HospitalPatientService {
 	@Autowired
 	private HospitalMapper hospitalMapper;
 	
+	@Autowired
+	private HospitalMedicalInfoService hospitalMedicalInfoService;
+	
+	
 	public HospitalDto hospitalAcceptRequest(Long id) {
 		hospitalPatientRepo.hospitalAcceptRequest(id);
 		
@@ -34,6 +38,19 @@ public class HospitalPatientService {
 	public void hospitalRefusedRequest (Long id) {
 		hospitalPatientRepo.hospitalRefusedRequest(id);
 	}
+	
+	public void tookBlood (Long id) {
+		
+		hospitalPatientRepo.tookBlood(id);
+		
+		HospitalPatient hospitalPatient=hospitalPatientRepo.findById(id).orElseThrow();
+		
+		hospitalMedicalInfoService.updateHospitalStock(hospitalPatient.getHospital().getEmail(), hospitalPatient.getPatient().getBloodType(), hospitalPatient.getPatient().getAmount());
+	}
+	
+	
+	
+	
 
 
 }

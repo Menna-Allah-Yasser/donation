@@ -1,5 +1,8 @@
 package FCI.graduate.blood_Donation.service;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,12 +51,17 @@ public class DonorMedicalHistoryService {
 			user.setSurgery(oldUser.getSurgery());
 		}
 		
-
-		
 		
 		return userMedicalInfoRepo.save(user);
 	}
 	
+	public void updateLastDonateTime (String email , LocalDate date ){
+		userMedicalInfoRepo.updateLastDonateTime(email, date);
+	}
+	
+	public void updateNote (String email , String note ) {
+		userMedicalInfoRepo.updateNote(email, note);
+	}
 
 
 }

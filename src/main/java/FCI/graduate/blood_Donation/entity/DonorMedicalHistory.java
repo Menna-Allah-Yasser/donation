@@ -35,6 +35,8 @@ public class DonorMedicalHistory {
 	
 	private LocalDate lastDonateTime;
 	
+	private LocalDate lastUpdate;
+	
 	private String note;
 
 

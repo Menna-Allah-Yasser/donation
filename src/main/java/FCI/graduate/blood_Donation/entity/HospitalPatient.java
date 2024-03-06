@@ -26,7 +26,10 @@ public class HospitalPatient {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	private int stateCode;
+	private int stateCode;// 0 patient request Blood   
+						//   1 Hospital Accept request 
+    					//  -1 Hospital refused request 
+						//   2 Patient takes blood   						
 
 	@ManyToOne
 	private Hospital hospital;

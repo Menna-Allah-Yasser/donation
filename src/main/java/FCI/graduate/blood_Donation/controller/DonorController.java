@@ -66,5 +66,10 @@ public class DonorController {
 	public List<Donor> findByBloodType( @PathVariable  String bloodType) {
 		return donorService.findByBloodType(bloodType);
 	}
+	
+	@GetMapping("/{email}")
+	public int getCountDonates(@PathVariable String email) {
+		return donorService.getCountDonates(email);
+	}
 
 }

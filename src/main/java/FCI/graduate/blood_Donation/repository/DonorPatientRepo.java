@@ -23,5 +23,22 @@ public interface DonorPatientRepo extends JpaRepository<DonorPatient, Long> {
 	void donorRefusedRequest (Long id );
 	
 	
+	@Modifying
+	@Transactional
+	@Query("UPDATE DonorPatient d SET d.stateCode = 2 WHERE d.id = :id")
+	void confirmDonation (Long id );
+	
+	
+	@Modifying
+	@Transactional
+	@Query("UPDATE DonorPatient d SET d.stateCode = 3 WHERE d.id = :id")
+	void  bloodConfirmed(Long id );
+	
+
+	@Modifying
+	@Transactional
+	@Query("UPDATE DonorPatient d SET d.stateCode = -3 WHERE d.id = :id")
+	void  bloodRefused(Long id );
+	
 
 }

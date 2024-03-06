@@ -26,4 +26,10 @@ public class HospitalPatientController {
 	public void hospitalRefusedRequest (@PathVariable Long id) {
 		hospitalPatientService.hospitalRefusedRequest(id);
 	}
+	
+	
+	@PutMapping("/took/Blood/{id}")
+	public void tookBlood (@PathVariable Long id) {
+		hospitalPatientService.tookBlood(id);
+	}
 }

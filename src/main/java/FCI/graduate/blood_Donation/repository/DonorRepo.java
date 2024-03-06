@@ -36,6 +36,10 @@ public interface DonorRepo extends JpaRepository<Donor, String> {
 	
 	List<Donor> findByBloodType(String bloodType);
 	
+	@Modifying
+	@Transactional
+	@Query("UPDATE Donor d SET d.countDonates = :count  WHERE d.email = :email")
+	void updateCountDonates(String email, int count);
 	
 
 }

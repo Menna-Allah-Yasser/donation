@@ -31,7 +31,7 @@ public class DonorPatient {
 	
 	private int stateCode; // 0 patient request Blood   
 						   // 1 Donor Accept request 
-	                       // -1 Donor refused request
+	                       // -1 Donor refused request  
 	                      //  2 Donor donated  - checking - 
 	                      //  3 blood is confirmed
 	                      //  -3 blood refused
