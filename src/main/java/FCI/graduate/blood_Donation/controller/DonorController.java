@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import FCI.graduate.blood_Donation.dto.DonorInfoDto;
 import FCI.graduate.blood_Donation.entity.Donor;
 import FCI.graduate.blood_Donation.service.DonorService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,11 +33,17 @@ public class DonorController {
 		return donorService.addDonor(user);
 	}
 
-	@DeleteMapping("/delete/{email}")
-	@Operation(summary = "Delete Donor Personal Information By E-mail")
-	public void deleteDonor(@PathVariable String email) {
-		donorService.deleteUser(email);
+	
+	@GetMapping("/Email/{email}")
+	public DonorInfoDto getDonorByEmail (@PathVariable String email) {
+		return donorService.getDonorByEmail(email);
 	}
+	
+	/*
+	 * @PutMapping("/update") public Donor updateDonor(Donor donor) { return
+	 * donorService.updateDonor(donor); }
+	 */
+	
 
 	@PutMapping("/update/pass")
 	@Operation(summary = "Update Donor's Password By E-mail")
@@ -63,13 +70,25 @@ public class DonorController {
 	}
 	
 	@GetMapping("/BloodType/{bloodType}")
-	public List<Donor> findByBloodType( @PathVariable  String bloodType) {
+	public List<DonorInfoDto> findByBloodType( @PathVariable  String bloodType) {
 		return donorService.findByBloodType(bloodType);
 	}
 	
 	@GetMapping("/{email}")
 	public int getCountDonates(@PathVariable String email) {
 		return donorService.getCountDonates(email);
+	}
+	
+	@PutMapping("count-donates")
+	public void incCountDonatesByOne(@RequestParam String email) {
+		donorService.incCountDonatesByOne(email);
+	}
+	
+
+	@DeleteMapping("/delete/{email}")
+	@Operation(summary = "Delete Donor Personal Information By E-mail")
+	public void deleteDonor(@PathVariable String email) {
+		donorService.deleteUser(email);
 	}
 
 }

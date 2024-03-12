@@ -12,45 +12,47 @@ import FCI.graduate.blood_Donation.repository.HospitalPatientRepo;
 
 @Service
 public class HospitalPatientService {
-	
+
 	@Autowired
 	private HospitalPatientRepo hospitalPatientRepo;
-	
+
 	@Autowired
 	private HospitalMapper hospitalMapper;
-	
+
 	@Autowired
 	private HospitalMedicalInfoService hospitalMedicalInfoService;
 	
-	
-	public HospitalDto hospitalAcceptRequest(Long id) {
-		hospitalPatientRepo.hospitalAcceptRequest(id);
-		
-		HospitalPatient hospitalPatient=new HospitalPatient(id);
-		hospitalPatient.setStateCode(1);  // hospital Accept Request 
-		
-		
-		HospitalDto hospitalDto=hospitalMapper.map(hospitalPatient.getHospital());
-		return hospitalDto;
-		
+	public void updateStateCode(Long id , String newState) {
+		hospitalPatientRepo.updateStateCode(id, newState);
 	}
-	
-	public void hospitalRefusedRequest (Long id) {
-		hospitalPatientRepo.hospitalRefusedRequest(id);
-	}
-	
-	public void tookBlood (Long id) {
-		
-		hospitalPatientRepo.tookBlood(id);
-		
-		HospitalPatient hospitalPatient=hospitalPatientRepo.findById(id).orElseThrow();
-		
-		hospitalMedicalInfoService.updateHospitalStock(hospitalPatient.getHospital().getEmail(), hospitalPatient.getPatient().getBloodType(), hospitalPatient.getPatient().getAmount());
-	}
-	
-	
-	
-	
 
+
+	/*
+	 * public HospitalDto hospitalAcceptRequest(Long id) {
+	 * hospitalPatientRepo.hospitalAcceptRequest(id);
+	 * 
+	 * HospitalPatient hospitalPatient=new HospitalPatient(id);
+	 * hospitalPatient.setStateCode(1); // hospital Accept Request
+	 * 
+	 * 
+	 * HospitalDto hospitalDto=hospitalMapper.map(hospitalPatient.getHospital());
+	 * return hospitalDto;
+	 * 
+	 * }
+	 * 
+	 * public void hospitalRefusedRequest (Long id) {
+	 * hospitalPatientRepo.hospitalRefusedRequest(id); }
+	 * 
+	 * 
+	 * public void tookBlood (Long id) {
+	 * 
+	 * hospitalPatientRepo.tookBlood(id);
+	 * 
+	 * HospitalPatient
+	 * hospitalPatient=hospitalPatientRepo.findById(id).orElseThrow();
+	 * 
+	 * hospitalMedicalInfoService.updateHospitalStock(hospitalPatient.getHospital().
+	 * getEmail(), hospitalPatient.getPatient().getBloodType()); }
+	 */
 
 }

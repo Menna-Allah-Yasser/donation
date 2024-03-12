@@ -11,34 +11,51 @@ import FCI.graduate.blood_Donation.entity.DonorPatient;
 @Repository
 public interface DonorPatientRepo extends JpaRepository<DonorPatient, Long> {
 	
-	@Modifying
-	@Transactional
-	@Query("UPDATE DonorPatient d SET d.stateCode = 1 WHERE d.id = :id")
-	void donorAcceptRequest (Long id );
-	
 	
 	@Modifying
 	@Transactional
-	@Query("UPDATE DonorPatient d SET d.stateCode = -1 WHERE d.id = :id")
-	void donorRefusedRequest (Long id );
+	@Query("UPDATE DonorPatient d SET d.stateCode = :newState WHERE d.id = :id")
+	void updateStateCode (Long id , String newState);
 	
-	
-	@Modifying
-	@Transactional
-	@Query("UPDATE DonorPatient d SET d.stateCode = 2 WHERE d.id = :id")
-	void confirmDonation (Long id );
-	
-	
-	@Modifying
-	@Transactional
-	@Query("UPDATE DonorPatient d SET d.stateCode = 3 WHERE d.id = :id")
-	void  bloodConfirmed(Long id );
-	
-
-	@Modifying
-	@Transactional
-	@Query("UPDATE DonorPatient d SET d.stateCode = -3 WHERE d.id = :id")
-	void  bloodRefused(Long id );
-	
+	/*
+	 * @Modifying
+	 * 
+	 * @Transactional
+	 * 
+	 * @Query("UPDATE DonorPatient d SET d.stateCode = 1 WHERE d.id = :id") void
+	 * donorAcceptRequest (Long id );
+	 * 
+	 * 
+	 * @Modifying
+	 * 
+	 * @Transactional
+	 * 
+	 * @Query("UPDATE DonorPatient d SET d.stateCode = -1 WHERE d.id = :id") void
+	 * donorRefusedRequest (Long id );
+	 * 
+	 * 
+	 * @Modifying
+	 * 
+	 * @Transactional
+	 * 
+	 * @Query("UPDATE DonorPatient d SET d.stateCode = 2 WHERE d.id = :id") void
+	 * confirmDonation (Long id );
+	 * 
+	 * 
+	 * @Modifying
+	 * 
+	 * @Transactional
+	 * 
+	 * @Query("UPDATE DonorPatient d SET d.stateCode = 3 WHERE d.id = :id") void
+	 * bloodConfirmed(Long id );
+	 * 
+	 * 
+	 * @Modifying
+	 * 
+	 * @Transactional
+	 * 
+	 * @Query("UPDATE DonorPatient d SET d.stateCode = -3 WHERE d.id = :id") void
+	 * bloodRefused(Long id );
+	 */
 
 }

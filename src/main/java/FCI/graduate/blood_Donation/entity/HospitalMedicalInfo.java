@@ -22,28 +22,28 @@ public class HospitalMedicalInfo {
 	@NonNull
 	private String email;
 	
-	@Column(name = "O-")
+	@Column(name = "OMinus")
 	private int countOMin;
 	
-	@Column(name = "O+")
+	@Column(name = "OPlus")
 	private int countOPlus;
 	
-	@Column(name = "A+")
+	@Column(name = "APlus")
 	private int countAPlus;
 	
-	@Column(name = "A-")
+	@Column(name = "AMinus")
 	private int countAMin;
 	
-	@Column(name = "B-")
+	@Column(name = "BMinus")
 	private int countBMin;
 	
-	@Column(name = "B+")
+	@Column(name = "BPlus")
 	private int countBPlus;
 	
-	@Column(name = "AB-")
+	@Column(name = "ABMinus")
 	private int countABMin;
 	
-	@Column(name = "AB+")
+	@Column(name = "ABPlus")
 	private int countABPlus;
 		
 	

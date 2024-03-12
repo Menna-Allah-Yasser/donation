@@ -55,13 +55,40 @@ public class DonorMedicalHistoryService {
 		return userMedicalInfoRepo.save(user);
 	}
 	
+	
 	public void updateLastDonateTime (String email , LocalDate date ){
 		userMedicalInfoRepo.updateLastDonateTime(email, date);
+		userMedicalInfoRepo.updateLastUpdate(email, LocalDate.now());
 	}
 	
 	public void updateNote (String email , String note ) {
 		userMedicalInfoRepo.updateNote(email, note);
 	}
+	
+	public void updateSurgery (String email , String surgery) {
+		userMedicalInfoRepo.updateSurgery(email, surgery);	
+		userMedicalInfoRepo.updateLastUpdate(email, LocalDate.now());
+	}
+	
+
+	public void updateDentist (String email , String dentist) {
+		userMedicalInfoRepo.updateDentist(email, dentist);	
+		userMedicalInfoRepo.updateLastUpdate(email, LocalDate.now());
+	}
+	
+
+	public void updateLastUpdate (String email , LocalDate lastUpdate) {
+		userMedicalInfoRepo.updateLastUpdate(email, lastUpdate);	
+	}
+	
+
+	public void updateChronicDisease(String email, String chronicDisease) {
+		userMedicalInfoRepo.updateChronicDisease(email, chronicDisease);
+		userMedicalInfoRepo.updateLegalToDonate(email, 0);
+	}
+
+	
+	
 
 
 }

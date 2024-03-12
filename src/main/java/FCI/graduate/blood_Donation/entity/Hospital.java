@@ -41,6 +41,10 @@ public class Hospital {
 	private String location;
 
 	private String type;
+	
+	private int longitude;
+
+	private int latitude;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@MapsId

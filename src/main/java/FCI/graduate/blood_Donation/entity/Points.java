@@ -18,7 +18,7 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class Points {
 	
-	private int points;
+	
 	
 	@Id
 	@NonNull
@@ -31,4 +31,5 @@ public class Points {
 	private Hospital hospital;
 	
 
+	private int points;
 }

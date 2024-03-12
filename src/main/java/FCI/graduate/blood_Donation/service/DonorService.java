@@ -2,6 +2,7 @@ package FCI.graduate.blood_Donation.service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import FCI.graduate.blood_Donation.entity.Login;
 import FCI.graduate.blood_Donation.entity.Patient;
+import FCI.graduate.blood_Donation.mapper.DonorInfoMapper;
+import FCI.graduate.blood_Donation.dto.DonorInfoDto;
 import FCI.graduate.blood_Donation.entity.Donor;
 import FCI.graduate.blood_Donation.entity.DonorMedicalHistory;
 import FCI.graduate.blood_Donation.repository.LoginRepo;
@@ -22,25 +25,36 @@ public class DonorService {
 
 	@Autowired
 	private LoginRepo loginRepo;
+	
+	@Autowired
+	private DonorInfoMapper donorInfoMapper;
 
-	public Donor getDonorByEmail(String email) {
-		return donorRepo.findById(email).orElseThrow();
+	public DonorInfoDto getDonorByEmail(String email) {
+		Donor donor= donorRepo.findById(email).orElseThrow();
+		DonorInfoDto donorInfoDto=donorInfoMapper.map(donor);
+		return donorInfoDto;
 	}
 
-	public Donor addDonor(Donor user) {
+	public Donor addDonor(Donor donor) {
 
-		Login login = new Login(user.getEmail(), user.getPassword());
-		user.setUserLogin(login);
+		Login login = new Login(donor.getEmail(), donor.getPassword() , "donor");
+		donor.setUserLogin(login);
 
-		DonorMedicalHistory donorMedicalHistory = new DonorMedicalHistory(user.getEmail());
-		user.setDonorMedicalHistory(donorMedicalHistory);
+		DonorMedicalHistory donorMedicalHistory = new DonorMedicalHistory(donor.getEmail());
+		donor.setDonorMedicalHistory(donorMedicalHistory);
 
-		Patient patient = new Patient(user.getEmail());
-		user.setPatient(patient);
+		Patient patient = new Patient(donor.getEmail());
+		donor.setPatient(patient);
 
-		return donorRepo.save(user);
+		return donorRepo.save(donor);
 
 	}
+	
+	/*
+	 * public Donor updateDonor(Donor donor) {
+	 * loginRepo.updatePassword(donor.getEmail(), donor.getPassword()); return
+	 * donorRepo.save(donor); }
+	 */
 
 	public void updatePassword(String email, String newPass) {
 		loginRepo.updatePassword(email, newPass);
@@ -63,17 +77,23 @@ public class DonorService {
 		donorRepo.deleteById(email);
 	}
 
-	public List<Donor> findByBloodType(String bloodType) {
-		return donorRepo.findByBloodType(bloodType);
+	public List<DonorInfoDto> findByBloodType(String bloodType) {
+		List<Donor> donors= donorRepo.findByBloodType(bloodType);
+		 List<DonorInfoDto> donorInfoDtos = new ArrayList<>();
+		for(Donor donor : donors) {
+			
+		 donorInfoDtos.add(donorInfoMapper.map(donor));
+		}
+		return donorInfoDtos;
 	}
 
 	public int getCountDonates(String email) {
-		Donor donor = getDonorByEmail(email);
-		return donor.getCountDonates();
+		DonorInfoDto donorInfoDto = getDonorByEmail(email);
+		return donorInfoDto.getCountDonates();
 	}
 	
-	public void updateCountDonates(String email, int count) {
-		donorRepo.updateCountDonates(email, count);
+	public void incCountDonatesByOne(String email) {
+		donorRepo.updateCountDonates(email, getCountDonates(email)+1);
 	}
 
 }

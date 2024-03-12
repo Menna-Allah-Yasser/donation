@@ -41,11 +41,11 @@ public class PatientService {
 
 		for (Donor i : donors) {
 
-			if (!(i.getEmail().equals(patient.getEmail()))) {
+			if (!(i.getEmail().equals(patient.getEmail())) && i.getDonorMedicalHistory().getLegalToDonate()!=0 ) {
 				DonorPatient donorPatient = new DonorPatient();
 				donorPatient.setDonor(i);
 				donorPatient.setPatient(patient);
-				donorPatient.setStateCode(0); // patient request Blood
+				donorPatient.setStateCode("pending"); // patient request Blood
 				donorPatientRepo.save(donorPatient);
 			}
 
@@ -58,7 +58,7 @@ public class PatientService {
 	
 		for (HospitalMedicalInfo i : hospitals) {
 			HospitalPatient hospitalPatient = new HospitalPatient();
-			hospitalPatient.setStateCode(0);
+			hospitalPatient.setStateCode("pending");
 			hospitalPatient.setPatient(patient);
 
 			Hospital hospital = new Hospital(i.getEmail());
@@ -73,7 +73,6 @@ public class PatientService {
 		
 		requestBloodFromDonor(patient);
 		requestBloodFromHospital(patient);
-
 		
 	}
 	

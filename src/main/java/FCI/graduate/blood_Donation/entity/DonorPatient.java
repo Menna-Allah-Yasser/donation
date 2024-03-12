@@ -28,13 +28,13 @@ public class DonorPatient {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	//@SequenceGenerator(name = "Donor_Patient_GENERATOR", sequenceName = "Donor_Patient_id", initialValue = 1000)
 	private Long id;
-	
-	private int stateCode; // 0 patient request Blood   
-						   // 1 Donor Accept request 
-	                       // -1 Donor refused request  
-	                      //  2 Donor donated  - checking - 
-	                      //  3 blood is confirmed
-	                      //  -3 blood refused
+	 
+	private String stateCode; // 0 patient request Blood           pending
+						      // 1 Donor Accept request            Accept
+	                          // -1 Donor refused request          reject
+	                         //  2 Donor donated  - checking -     Done       counter++
+	                         //  3 blood is confirmed              confirmed
+	                        //  -3 blood refused                   refused    send note
 	
 	@ManyToOne
 	private Donor donor;

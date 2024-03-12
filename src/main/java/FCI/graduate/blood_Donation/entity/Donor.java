@@ -47,7 +47,9 @@ public class Donor {
 
 	private String phone;
 
-	private String address;
+	private int longitude;
+
+	private int latitude;
 
 	private int countDonates;
 
@@ -62,7 +64,6 @@ public class Donor {
 	@MapsId
 	@JoinColumn(name = "email")
 	private Login userLogin;
-	
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@MapsId

@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import FCI.graduate.blood_Donation.entity.Hospital;
+import FCI.graduate.blood_Donation.dto.HospitalInfoDto;
 import FCI.graduate.blood_Donation.entity.Donor;
 import FCI.graduate.blood_Donation.service.HospitalService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("/Hospitals")
+@RequestMapping("/api/hospitals")
 @Tag(name = "Hospital")
 public class HospitalController {
 
@@ -29,32 +30,32 @@ public class HospitalController {
 
 	@GetMapping("")
 	@Operation(summary = "All avilable Hospitals ")
-	public List<Hospital> getAllHospitals() {
+	public List<HospitalInfoDto> getAllHospitals() {
 		return hospitalService.getAllHospitals();
 	}
 
-	@PostMapping("/add")
+	@PostMapping()
 	@Operation(summary = "Add Hospital")
 	public Hospital addHospital(@RequestBody Hospital hospital) {
 		return hospitalService.addHospital(hospital);
 	}
 
-	@DeleteMapping("/delete/{email}")
-	@Operation(summary = "Delate Hospital  ")
-	public void deleteHospital(@PathVariable String email) {
-		hospitalService.deleteHospital(email);
-	}
-
-	@PutMapping("/update/pass")
+	@PutMapping("/password")
 	@Operation(summary = "Update Hospital Password")
 	public void updatePassword(@RequestParam String email, @RequestParam String newPass) {
 		hospitalService.updatePassword(email, newPass);
 	}
 
-	@PutMapping("/update/phone")
+	@PutMapping("/phone")
 	@Operation(summary = "Update Hospital Phone")
 	public void updatePhone(String email, String newPhone) {
 		hospitalService.updatePhone(email, newPhone);
+	}
+	
+	@DeleteMapping("/{email}")
+	@Operation(summary = "Delate Hospital  ")
+	public void deleteHospital(@PathVariable String email) {
+		hospitalService.deleteHospital(email);
 	}
 
 }

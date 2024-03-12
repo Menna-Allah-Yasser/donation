@@ -38,6 +38,8 @@ public class DonorMedicalHistory {
 	private LocalDate lastUpdate;
 	
 	private String note;
+	
+	private int legalToDonate;
 
 
 

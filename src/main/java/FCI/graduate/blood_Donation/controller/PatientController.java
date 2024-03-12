@@ -14,7 +14,7 @@ import FCI.graduate.blood_Donation.entity.Patient;
 import FCI.graduate.blood_Donation.service.PatientService;
 
 @RestController
-@RequestMapping("/Patient")
+@RequestMapping("/api/patients")
 public class PatientController {
 
 	@Autowired
@@ -25,17 +25,17 @@ public class PatientController {
 		return patientService.getAll();
 	}
 	
-	@PostMapping("/Request/Blood")
+	@PostMapping("/request-blood")
 	public void requestBlood(@RequestBody Patient patient) {
 		patientService.requestBlood(patient);
 	}
 	
-	@PostMapping("/RequestBlood/Donor")
+	@PostMapping("/request-blood-from-donor")
 	public void requestBloodFromDonor(@RequestBody Patient patient) {
 		patientService.requestBloodFromDonor(patient);
 	}
 	
-	@PostMapping("/RequestBlood/Hospital")
+	@PostMapping("/request-blood-from-hospital")
 	public void requestBloodFromHospital(@RequestBody Patient patient) {
 		patientService.requestBloodFromHospital(patient);
 	}
