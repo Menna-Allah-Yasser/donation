@@ -10,11 +10,11 @@ import FCI.graduate.blood_Donation.repository.HospitalMedicalInfoRepo;
 @Service
 public class HospitalMedicalInfoService {
 	
+	Logger logger = LoggerFactory.getLogger(HospitalMedicalInfoService.class);
 	
 	@Autowired
 	private HospitalMedicalInfoRepo hospitalMedicalInfoRepo;
 	
-	Logger logger=LoggerFactory.getLogger(HospitalMedicalInfoService.class);
 	
 	public void updateHospitalStock (String email , String bloodType ,  int amount) {
 		

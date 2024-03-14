@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,8 @@ import FCI.graduate.blood_Donation.repository.DonorRepo;
 
 @Service
 public class DonorService {
+	
+	Logger logger = LoggerFactory.getLogger(DonorService.class);
 
 	@Autowired
 	private DonorRepo donorRepo;
@@ -28,6 +32,7 @@ public class DonorService {
 	
 	@Autowired
 	private DonorInfoMapper donorInfoMapper;
+	
 
 	public DonorInfoDto getDonorByEmail(String email) {
 		Donor donor= donorRepo.findById(email).orElseThrow();

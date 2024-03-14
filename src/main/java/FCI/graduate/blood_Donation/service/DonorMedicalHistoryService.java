@@ -12,11 +12,11 @@ import FCI.graduate.blood_Donation.repository.DonorMedicalHistoryRepo;
 
 @Service
 public class DonorMedicalHistoryService {
+	
+	Logger logger = LoggerFactory.getLogger(DonorMedicalHistoryService.class);
 
 	@Autowired
 	private DonorMedicalHistoryRepo userMedicalInfoRepo;
-
-	Logger logger = LoggerFactory.getLogger(DonorMedicalHistoryService.class);
 
 	public DonorMedicalHistory getUserByEmail(String email) {
 		return userMedicalInfoRepo.findById(email).orElseThrow();

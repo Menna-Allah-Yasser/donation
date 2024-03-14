@@ -3,6 +3,8 @@ package FCI.graduate.blood_Donation.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ import FCI.graduate.blood_Donation.repository.LoginRepo;
 
 @Service
 public class HospitalService {
+	
+	Logger logger = LoggerFactory.getLogger(HospitalService.class);
 
 	@Autowired
 	private HospitalRepo hospitalRepo;
