@@ -41,7 +41,7 @@ public class PatientService {
 
 		for (Donor i : donors) {
 
-			if (!(i.getEmail().equals(patient.getEmail())) && i.getDonorMedicalHistory().getLegalToDonate()!=0 ) {
+			if (!(i.getEmail().equals(patient.getEmail())) && i.getDonorMedicalHistory().getLegalToDonate()!="false" ) {
 				DonorPatient donorPatient = new DonorPatient();
 				donorPatient.setDonor(i);
 				donorPatient.setPatient(patient);

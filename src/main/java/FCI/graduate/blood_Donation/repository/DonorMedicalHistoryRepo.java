@@ -36,18 +36,13 @@ public interface DonorMedicalHistoryRepo extends JpaRepository<DonorMedicalHisto
 
 	@Modifying
 	@Transactional
-	@Query("UPDATE DonorMedicalHistory d SET d.lastUpdate = :lastUpdate WHERE d.email = :email")
-	void updateLastUpdate(String email, LocalDate lastUpdate);
-
-	@Modifying
-	@Transactional
 	@Query("UPDATE DonorMedicalHistory d SET d.chronicDisease = :chronicDisease WHERE d.email = :email")
 	void updateChronicDisease(String email, String chronicDisease);
 	
 
 	@Modifying
-	@Transactional
-	@Query("UPDATE DonorMedicalHistory d SET d.legalToDonate = :legalToDonate WHERE d.email = :email")
-	void updateLegalToDonate(String email, int legalToDonate);
+	@Transactional                             
+	@Query("UPDATE DonorMedicalHistory d SET d.legalToDonate = :legal WHERE d.email = :email")
+	void updateLegalToDonate(String email, String legal);
 
 }

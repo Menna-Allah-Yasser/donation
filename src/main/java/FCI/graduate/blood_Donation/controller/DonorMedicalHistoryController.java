@@ -65,13 +65,13 @@ public class DonorMedicalHistoryController {
 		userMedicalInfoService.updateDentist(email, dentist);
 	}
 
-	@PutMapping("/last-update")
-	public void updateLastUpdate(@RequestParam String email, @RequestParam LocalDate lastUpdate) {
-		userMedicalInfoService.updateLastUpdate(email, lastUpdate);
-	}
-
-	void updateChronicDisease(@RequestParam String email, @RequestParam String chronicDisease) {
+	public void updateChronicDisease(@RequestParam String email, @RequestParam String chronicDisease) {
 		userMedicalInfoService.updateChronicDisease(email, chronicDisease);
+	}
+	
+	@PutMapping("/legal-to-donate")
+	public void updateLegalToDonate(@RequestParam String email) {
+		userMedicalInfoService.updateLegalToDonate(email);
 	}
 
 }
