@@ -5,6 +5,7 @@ import java.time.temporal.ChronoUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import FCI.graduate.blood_Donation.entity.DonorMedicalHistory;
@@ -12,7 +13,7 @@ import FCI.graduate.blood_Donation.repository.DonorMedicalHistoryRepo;
 
 @Service
 public class DonorMedicalHistoryService {
-	
+
 	Logger logger = LoggerFactory.getLogger(DonorMedicalHistoryService.class);
 
 	@Autowired
@@ -40,6 +41,8 @@ public class DonorMedicalHistoryService {
 	}
 
 	public DonorMedicalHistory updateUser(DonorMedicalHistory user) {
+
+		logger.info("update Donor Medical history");
 
 		DonorMedicalHistory oldUser = getUserByEmail(user.getEmail());
 
