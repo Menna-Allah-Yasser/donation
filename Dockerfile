@@ -3,6 +3,6 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /Blood_Donation-0.0.1-SNAPSHOT.war demo.war
+COPY --from=build /target/facebook-project-0.0.1-SNAPSHOT.jar demo.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-war","demo.war"]
+ENTRYPOINT ["java","-jar","demo.jar"]
