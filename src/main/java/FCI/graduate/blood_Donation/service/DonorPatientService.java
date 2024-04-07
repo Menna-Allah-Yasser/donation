@@ -9,13 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import FCI.graduate.blood_Donation.dto.DonorDto;
-import FCI.graduate.blood_Donation.entity.Donor;
 import FCI.graduate.blood_Donation.entity.DonorPatient;
-import FCI.graduate.blood_Donation.entity.Patient;
 import FCI.graduate.blood_Donation.mapper.DonorMapper;
-import FCI.graduate.blood_Donation.mapper.DonorMapperImpl;
 import FCI.graduate.blood_Donation.repository.DonorPatientRepo;
+
+
+
 
 @Service
 public class DonorPatientService {
@@ -28,11 +27,12 @@ public class DonorPatientService {
 	@Autowired
 	private DonorMapper donorMapper;
 	
-	@Autowired
-	private DonorService donorService;
-	
-	@Autowired
-	private DonorMedicalHistoryService donorMedicalHistoryService;
+	/*
+	 * @Autowired private DonorService donorService;
+	 */
+	/*
+	 * @Autowired private DonorMedicalHistoryService donorMedicalHistoryService;
+	 */
 
 	public DonorPatient addRequest(DonorPatient donorPatient) {
 		return donorPatientRepo.save(donorPatient);

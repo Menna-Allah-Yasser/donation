@@ -1,18 +1,11 @@
 package FCI.graduate.blood_Donation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import FCI.graduate.blood_Donation.dto.DonorDto;
-import FCI.graduate.blood_Donation.entity.Donor;
-import FCI.graduate.blood_Donation.entity.DonorPatient;
-import FCI.graduate.blood_Donation.mapper.DonorMapper;
 import FCI.graduate.blood_Donation.service.DonorPatientService;
 
 @RestController
