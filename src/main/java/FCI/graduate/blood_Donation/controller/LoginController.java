@@ -1,5 +1,6 @@
 package FCI.graduate.blood_Donation.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/Login")
-@Tag(name = "Login")
+@Tag(name = "Login -NOT COMPLETED-")
 public class LoginController {
 
 	@Autowired
@@ -33,11 +34,13 @@ public class LoginController {
 	}
 
 	@PutMapping("/update")
+	@Operation(summary = "update password")
 	public void updatePassword(@RequestParam String email, @RequestParam String newPass) {
 		loginService.updatePassword(email, newPass);
 	}
 	
 	@GetMapping("")
+	@Operation(summary = "authentication")
 	public void authen(@RequestParam String email ,@RequestParam String password) {
 		 loginService.authen(email, password);
 	}

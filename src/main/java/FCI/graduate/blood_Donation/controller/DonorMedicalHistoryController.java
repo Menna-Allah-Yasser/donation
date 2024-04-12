@@ -29,47 +29,55 @@ public class DonorMedicalHistoryController {
 	private DonorMedicalHistoryService userMedicalInfoService;
 
 	@GetMapping("/{email}")
+	@Operation(summary = "get Donor Medical History By Email")
 	public DonorMedicalHistory getDonorMedicalHistoryByEmail(@PathVariable String email) {
 		return userMedicalInfoService.getUserByEmail(email);
 	}
 
 	@PostMapping()
-	@Operation(summary = "Add User Medical Information")
+	@Operation(summary = "Add Donor Medical Information")
 	public DonorMedicalHistory addDonorMedicalHistory(@RequestBody DonorMedicalHistory user) {
 		return userMedicalInfoService.addUser(user);
 	}
 
 	@PutMapping()
-	@Operation(summary = "Update User Medical Information")
+	@Operation(summary = "Update Donor Medical Information")
 	public DonorMedicalHistory updateDonorMedicalHistory(@RequestBody DonorMedicalHistory user) {
 		return userMedicalInfoService.updateUser(user);
 	}
 
 	@PutMapping("/last-donate-time")
+	@Operation(summary = "update Last Donate_Time")
 	public void updateLastDonateTime(@RequestParam String email, @RequestParam LocalDate date) {
 		userMedicalInfoService.updateLastDonateTime(email, date);
 	}
 
 	@PutMapping("/note")
+	@Operation(summary = "update Note")
 	public void updateNote(@RequestParam String email, @RequestParam String note) {
 		userMedicalInfoService.updateNote(email, note);
 	}
 
 	@PutMapping("/surgery")
+	@Operation(summary = "update surgery state")
 	public void updateSurgey(@RequestParam String email, @RequestParam String surgery) {
 		userMedicalInfoService.updateSurgery(email, surgery);
 	}
 
 	@PutMapping("/dentist")
+	@Operation(summary = "update dentist state")
 	public void updateDentist(@RequestParam String email, @RequestParam String dentist) {
 		userMedicalInfoService.updateDentist(email, dentist);
 	}
 
+	@PutMapping("/chronic")
+	@Operation(summary = "update chronic disease state")
 	public void updateChronicDisease(@RequestParam String email, @RequestParam String chronicDisease) {
 		userMedicalInfoService.updateChronicDisease(email, chronicDisease);
 	}
 	
 	@PutMapping("/legal-to-donate")
+	@Operation(summary = "update legal_to_donate state")
 	public void updateLegalToDonate(@RequestParam String email) {
 		userMedicalInfoService.updateLegalToDonate(email);
 	}

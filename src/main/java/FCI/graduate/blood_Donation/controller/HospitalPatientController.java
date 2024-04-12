@@ -1,5 +1,7 @@
 package FCI.graduate.blood_Donation.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -12,12 +14,14 @@ import FCI.graduate.blood_Donation.service.HospitalPatientService;
 
 @RestController
 @RequestMapping("/api/hospital-patient")
+@Tag(name = "Hospital Patient")
 public class HospitalPatientController {
 
 	@Autowired
 	private HospitalPatientService hospitalPatientService;
 
 	@PutMapping()
+	@Operation(summary = "update state code")
 	public void updateStateCode(@RequestParam Long id, @RequestParam String newState) {
 		hospitalPatientService.updateStateCode(id, newState);
 	}

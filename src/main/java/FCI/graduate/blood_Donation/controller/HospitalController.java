@@ -29,7 +29,7 @@ public class HospitalController {
 	private HospitalService hospitalService;
 
 	@GetMapping("")
-	@Operation(summary = "All avilable Hospitals ")
+	@Operation(summary = "All Hospitals ")
 	public List<HospitalInfoDto> getAllHospitals() {
 		return hospitalService.getAllHospitals();
 	}

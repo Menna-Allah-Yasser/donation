@@ -35,6 +35,7 @@ public class DonorController {
 
 	
 	@GetMapping("/Email/{email}")
+	@Operation(summary = "get donor by e-mail")
 	public DonorInfoDto getDonorByEmail (@PathVariable String email) {
 		return donorService.getDonorByEmail(email);
 	}
@@ -58,7 +59,7 @@ public class DonorController {
 	}
 
 	@PutMapping("/update/bloodType")
-	@Operation(summary = "Update Donor's Blood Type By E-mail")
+	@Operation(summary = "Update Donor's Blood_Type By E-mail")
 	public void updateBloodType(@RequestParam String email, @RequestParam String newBloodType) {
 		donorService.updateBloodType(email, newBloodType);
 	}
@@ -70,16 +71,19 @@ public class DonorController {
 	}
 	
 	@GetMapping("/BloodType/{bloodType}")
+	@Operation(summary = "find donors by blood_type")
 	public List<DonorInfoDto> findByBloodType( @PathVariable  String bloodType) {
 		return donorService.findByBloodType(bloodType);
 	}
 	
 	@GetMapping("/{email}")
+	@Operation(summary = "get donor's count_donates")
 	public int getCountDonates(@PathVariable String email) {
 		return donorService.getCountDonates(email);
 	}
 	
 	@PutMapping("count-donates")
+	@Operation(summary = "donor's count_donates ++ by e-mail")
 	public void incCountDonatesByOne(@RequestParam String email) {
 		donorService.incCountDonatesByOne(email);
 	}
