@@ -130,4 +130,18 @@ public class DonorMedicalHistoryService {
 
 	}
 
+	//@Scheduled(cron = "0 0 0 1 */3 ?")
+	public void updateMedicalHistoryEvery3Months(String email) {
+
+		DonorMedicalHistory donorMedicalHistory = getUserByEmail(email);
+		long monthsDifference = ChronoUnit.MONTHS.between(donorMedicalHistory.getLastModifiedDate(), LocalDate.now());
+	    if(monthsDifference >= 3 ){
+			logger.info("update Medical History");
+		}else{
+			logger.info("Do not need to update Medical History");
+		}
+
+
+	}
+
 }

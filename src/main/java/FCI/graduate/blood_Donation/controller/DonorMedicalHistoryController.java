@@ -82,4 +82,9 @@ public class DonorMedicalHistoryController {
 		userMedicalInfoService.updateLegalToDonate(email);
 	}
 
+
+	@GetMapping("update/{email}")
+	public void updateMedicalHistoryEvery3Months(@PathVariable String email){
+		userMedicalInfoService.updateMedicalHistoryEvery3Months(email);
+	}
 }

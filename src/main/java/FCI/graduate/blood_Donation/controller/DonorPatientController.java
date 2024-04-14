@@ -20,7 +20,7 @@ public class DonorPatientController {
 
 
 	@PutMapping()
-	@Operation(summary = "update state code")
+	@Operation(summary = "update state_code")
 	public void updateStateCode(@RequestParam Long id ,@RequestParam String newState) {
 		donorPatientService.updateStateCode(id, newState);
 	}

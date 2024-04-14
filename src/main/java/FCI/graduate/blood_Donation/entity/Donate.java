@@ -1,8 +1,6 @@
 package FCI.graduate.blood_Donation.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,17 +18,15 @@ public class Donate {
 	
 	@Id
 	@NonNull
-	private String id;
-	
-	private int stateCode;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
 	@ManyToOne
 	private Donor donor;
 	
-	
 	@ManyToOne
 	private Hospital hospital;
-	
-	
+
+	private int stateCode;
 
 }
