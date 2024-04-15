@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import FCI.graduate.blood_Donation.service.HospitalMedicalInfoService;
 
 @RestController
-@RequestMapping("/api/medical-info-hospital")
+@RequestMapping("/api/hospitals/medical-info")
 @Tag(name = "Hospital Medical Info")
 public class HospitalMedicalInfoController {
 

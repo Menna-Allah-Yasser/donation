@@ -1,15 +1,16 @@
 package FCI.graduate.blood_Donation.service;
 
-import FCI.graduate.blood_Donation.entity.Donate;
-import FCI.graduate.blood_Donation.entity.DonorPatient;
-import FCI.graduate.blood_Donation.entity.Points;
+import FCI.graduate.blood_Donation.entity.*;
 import FCI.graduate.blood_Donation.repository.DonateRepo;
+import FCI.graduate.blood_Donation.repository.DonorRepo;
+import FCI.graduate.blood_Donation.repository.HospitalRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
+import java.util.List;
 
 @Service
 public class DonateService {
@@ -18,17 +19,30 @@ public class DonateService {
     @Autowired
     private DonateRepo donateRepo;
 
-    private PointsService pointsService;
+    @Autowired
+    private DonorRepo donorRepo;
 
-    public Donate addRequest(Donate donate) {
+    @Autowired
+    private HospitalRepo hospitalRepo;
 
-        Points points = new Points();
-        points.setDonor(donate.getDonor());
-        points.setHospital(donate.getHospital());
-       // pointsService.addRequest(points);
-        logger.info("id : "+donate.getId() +" donor : "+donate.getDonor() + "hospital : "+ donate.getHospital()
-        +"state_code : "+donate.getStateCode());
-        return donateRepo.save(donate);
+    public void addRequest(String donorEmail , String hospitalEmail) {
+
+        Donate donate = new Donate();
+
+        Donor donor= donorRepo.getById(donorEmail);
+        Hospital hospital=hospitalRepo.getById(hospitalEmail);
+
+        donate.setDonor(donor);
+        donate.setHospital(hospital);
+
+         donateRepo.save(donate);
+
+        logger.info("id : "+donate.getId() +"   donor e-mail: "+donorEmail + "   hospital e-mail: "+ hospitalEmail
+                +"   state_code : "+donate.getStateCode());
+    }
+
+    public List<Donate> findAll(){
+        return donateRepo.findAll();
     }
 
     public void updateStateCode(Long id , String newState) {

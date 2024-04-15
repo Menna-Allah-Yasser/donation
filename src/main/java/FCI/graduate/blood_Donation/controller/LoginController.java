@@ -15,7 +15,7 @@ import FCI.graduate.blood_Donation.service.LoginService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("/Login")
+@RequestMapping("/api/login")
 @Tag(name = "Login -NOT COMPLETED-")
 public class LoginController {
 

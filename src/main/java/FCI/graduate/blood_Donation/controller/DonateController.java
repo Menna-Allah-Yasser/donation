@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping("/api/donate")
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/donations")
 @Tag(name = "Donate")
 public class DonateController {
 
@@ -18,13 +20,18 @@ public class DonateController {
 
     @PostMapping("")
     @Operation(summary = "add request to donate")
-    public Donate addRequest(@RequestBody Donate donate) {
-       return donateService.addRequest(donate);
+    public void addRequest(@RequestParam  String donorEmail ,@RequestParam String hospitalEmail) {
+        donateService.addRequest( donorEmail ,  hospitalEmail);
     }
 
     @PutMapping("")
     @Operation(summary = "update state_code")
     public void updateStateCode(@RequestParam Long id ,@RequestParam String newState){
         donateService.updateStateCode(id , newState);
+    }
+
+    @GetMapping()
+    public List<Donate> findAll(){
+       return  donateService.findAll();
     }
 }

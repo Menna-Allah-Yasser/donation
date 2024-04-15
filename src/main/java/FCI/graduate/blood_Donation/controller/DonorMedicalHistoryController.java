@@ -21,7 +21,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("api/medical-history")
+@RequestMapping("api/donors/medical-info")
 @Tag(name = "Donor Medical History")
 public class DonorMedicalHistoryController {
 
@@ -79,11 +79,14 @@ public class DonorMedicalHistoryController {
 	@PutMapping("/legal-to-donate")
 	@Operation(summary = "update legal_to_donate state")
 	public void updateLegalToDonate(@RequestParam String email) {
+
 		userMedicalInfoService.updateLegalToDonate(email);
 	}
 
 
+
 	@GetMapping("update/{email}")
+	@Operation(summary = "call this api every login to check if donor has to update medical info or not")
 	public void updateMedicalHistoryEvery3Months(@PathVariable String email){
 		userMedicalInfoService.updateMedicalHistoryEvery3Months(email);
 	}

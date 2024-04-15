@@ -20,68 +20,69 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("/Donor")
+@RequestMapping("/api/donors")
 @Tag(name = "Donor")
 public class DonorController {
 
 	@Autowired
 	private DonorService donorService;
 
-	@PostMapping("/add")
+	@PostMapping("")
 	@Operation(summary = "Add Donor Personal Information ")
 	public Donor addDonor(@RequestBody Donor user) {
 		return donorService.addDonor(user);
 	}
 
 	
-	@GetMapping("/Email/{email}")
+	@GetMapping("/{email}")
 	@Operation(summary = "get donor by e-mail")
 	public DonorInfoDto getDonorByEmail (@PathVariable String email) {
+
 		return donorService.getDonorByEmail(email);
 	}
-	
+
+	@GetMapping("/count-donations/{email}")
+	@Operation(summary = "get donor's count_donates")
+	public int getCountDonates(@PathVariable String email) {
+		return donorService.getCountDonates(email);
+	}
+
+	@GetMapping("/bloodtype/{bloodType}")
+	@Operation(summary = "find donors by blood_type")
+	public List<DonorInfoDto> findByBloodType( @PathVariable  String bloodType) {
+		return donorService.findByBloodType(bloodType);
+	}
+
 	/*
 	 * @PutMapping("/update") public Donor updateDonor(Donor donor) { return
 	 * donorService.updateDonor(donor); }
 	 */
 	
 
-	@PutMapping("/update/pass")
+	@PutMapping("/password")
 	@Operation(summary = "Update Donor's Password By E-mail")
 	public void updatePassword(@RequestParam String email, @RequestParam String newPass) {
 		donorService.updatePassword(email, newPass);
 	}
 
-	@PutMapping("/update/phone")
+	@PutMapping("/phone")
 	@Operation(summary = "Update Donor's Phone By E-mail")
 	public void updatePhone(@RequestParam String email, @RequestParam String newPhone) {
 		donorService.updatePhone(email, newPhone);
 	}
 
-	@PutMapping("/update/bloodType")
+	@PutMapping("/bloodtype")
 	@Operation(summary = "Update Donor's Blood_Type By E-mail")
 	public void updateBloodType(@RequestParam String email, @RequestParam String newBloodType) {
 		donorService.updateBloodType(email, newBloodType);
 	}
 
-	@PutMapping("/update/name")
+	@PutMapping("/name")
 	@Operation(summary = "Update Donor's Name By E-mail")
 	public void updateName(@RequestParam String email, @RequestParam String newFName, @RequestParam String newLName) {
 		donorService.updateName(email, newFName, newLName);
 	}
-	
-	@GetMapping("/BloodType/{bloodType}")
-	@Operation(summary = "find donors by blood_type")
-	public List<DonorInfoDto> findByBloodType( @PathVariable  String bloodType) {
-		return donorService.findByBloodType(bloodType);
-	}
-	
-	@GetMapping("/{email}")
-	@Operation(summary = "get donor's count_donates")
-	public int getCountDonates(@PathVariable String email) {
-		return donorService.getCountDonates(email);
-	}
-	
+
 	@PutMapping("count-donates")
 	@Operation(summary = "donor's count_donates ++ by e-mail")
 	public void incCountDonatesByOne(@RequestParam String email) {
@@ -89,8 +90,8 @@ public class DonorController {
 	}
 	
 
-	@DeleteMapping("/delete/{email}")
-	@Operation(summary = "Delete Donor Personal Information By E-mail")
+	@DeleteMapping("/{email}")
+	@Operation(summary = "Delete Donor Personal Information By e-mail")
 	public void deleteDonor(@PathVariable String email) {
 		donorService.deleteUser(email);
 	}

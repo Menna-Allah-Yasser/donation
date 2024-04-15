@@ -11,7 +11,7 @@ public interface PointsRepo extends JpaRepository<Points, Long> {
 
     @Modifying
     @Transactional
-    @Query("UPDATE Points p SET p.points =p.points + :point WHERE p.donor = :donorEmail AND p.hospital= :hospitalEmail")
+    @Query("UPDATE Points p SET p.points =p.points + :point WHERE p.donor.email = :donorEmail AND p.hospital.email= :hospitalEmail")
     void updatePoints (String donorEmail , String hospitalEmail , int point);
 
 }

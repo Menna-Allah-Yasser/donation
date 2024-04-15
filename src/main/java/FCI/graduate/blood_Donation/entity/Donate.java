@@ -27,6 +27,6 @@ public class Donate {
 	@ManyToOne
 	private Hospital hospital;
 
-	private int stateCode;
+	private String stateCode;
 
 }
