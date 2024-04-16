@@ -14,6 +14,8 @@ import FCI.graduate.blood_Donation.entity.Login;
 import FCI.graduate.blood_Donation.service.LoginService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/login")
 @Tag(name = "Login -NOT COMPLETED-")
@@ -43,6 +45,31 @@ public class LoginController {
 	@Operation(summary = "authentication")
 	public void authen(@RequestParam String email ,@RequestParam String password) {
 		 loginService.authen(email, password);
+	}
+
+
+	@GetMapping("/emails")
+	@Operation(summary = "get all e-mails in system")
+	public List<String> getAllEmails(){
+		return loginService.getAllEmails();
+	}
+
+	@GetMapping("/donors-emails")
+	@Operation(summary = "get all donors e-mails in system")
+	public List<String> getDonorsEmails(){
+		return loginService.getDonorsEmails();
+	}
+
+	@GetMapping("/hospitals-emails")
+	@Operation(summary = "get all hospitals e-mails in system")
+	public List<String> getHospitalsEmails(){
+		return loginService.getHospitalsEmails();
+	}
+
+	@GetMapping("/banks-emails")
+	@Operation(summary = "get all  banks e-mails in system")
+	public List<String> getBanksEmails(){
+		return loginService.getBanksEmails();
 	}
 
 }

@@ -2,6 +2,7 @@ package FCI.graduate.blood_Donation.controller;
 
 import java.util.List;
 
+import FCI.graduate.blood_Donation.dto.DonorPersonalInfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,10 +36,16 @@ public class DonorController {
 
 	
 	@GetMapping("/{email}")
-	@Operation(summary = "get donor by e-mail")
+	@Operation(summary = "get donor info (personal & medical ) by e-mail")
 	public DonorInfoDto getDonorByEmail (@PathVariable String email) {
 
 		return donorService.getDonorByEmail(email);
+	}
+
+	@GetMapping("/pi/{email}")
+	@Operation(summary = "get donor personal info by e-mail")
+	public DonorPersonalInfoDto getDonorPersonalInfoByEmail(@PathVariable String email){
+		return donorService.getDonorPersonalInfoByEmail(email);
 	}
 
 	@GetMapping("/count-donations/{email}")

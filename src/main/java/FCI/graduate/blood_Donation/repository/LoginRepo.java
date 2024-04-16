@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import FCI.graduate.blood_Donation.entity.Login;
 
+import java.util.List;
+
 @Repository
 public interface LoginRepo extends JpaRepository<Login, String>{
 
@@ -19,4 +21,18 @@ public interface LoginRepo extends JpaRepository<Login, String>{
 	
 	@Query("SELECT l FROM Login l WHERE l.email = :email AND l.password=:password")
 	Login authentication(String email , String password);
+
+	@Query("SELECT l.email FROM Login l ")
+	List<String> getAllEmails ();
+
+	@Query("SELECT l.email FROM Login l WHERE l.type='donor'")
+	List<String> getDonorsEmails ();
+
+	@Query("SELECT l.email FROM Login l WHERE l.type='hospital'")
+	List<String> getHospitalsEmails ();
+
+	@Query("SELECT l.email FROM Login l WHERE l.type='bank'")
+	List<String> getBanksEmails ();
+
+
 }

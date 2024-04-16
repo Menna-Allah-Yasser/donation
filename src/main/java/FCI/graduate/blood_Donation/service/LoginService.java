@@ -11,6 +11,8 @@ import FCI.graduate.blood_Donation.entity.DonorMedicalHistory;
 import FCI.graduate.blood_Donation.entity.Donor;
 import FCI.graduate.blood_Donation.repository.LoginRepo;
 
+import java.util.List;
+
 @Service
 public class LoginService {
 	
@@ -51,6 +53,22 @@ public class LoginService {
 		else {
 		 loginRepo.authentication(email, password);
 		}
+	}
+
+	public List<String> getAllEmails(){
+		return loginRepo.getAllEmails();
+	}
+
+	public List<String> getDonorsEmails(){
+		return loginRepo.getDonorsEmails();
+	}
+
+	public List<String> getHospitalsEmails(){
+		return loginRepo.getHospitalsEmails();
+	}
+
+	public List<String> getBanksEmails(){
+		return loginRepo.getBanksEmails();
 	}
 
 }

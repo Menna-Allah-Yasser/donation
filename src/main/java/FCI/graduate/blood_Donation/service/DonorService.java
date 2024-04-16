@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import FCI.graduate.blood_Donation.dto.DonorPersonalInfoDto;
+import FCI.graduate.blood_Donation.mapper.DonorPersonalInfoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +34,21 @@ public class DonorService {
 	
 	@Autowired
 	private DonorInfoMapper donorInfoMapper;
+
+	@Autowired
+	private DonorPersonalInfoMapper donorPersonalInfoMapper;
 	
 
 	public DonorInfoDto getDonorByEmail(String email) {
 		Donor donor= donorRepo.findById(email).orElseThrow();
 		DonorInfoDto donorInfoDto=donorInfoMapper.map(donor);
 		return donorInfoDto;
+	}
+
+	public DonorPersonalInfoDto getDonorPersonalInfoByEmail(String email){
+		Donor donor= donorRepo.findById(email).orElseThrow();
+		DonorPersonalInfoDto donorPersonalInfoDto=donorPersonalInfoMapper.map(donor);
+		return donorPersonalInfoDto;
 	}
 
 	public Donor addDonor(Donor donor) {
