@@ -43,15 +43,15 @@ public class Donor {
 
 	private String gender;
 
-	private int age;
+	private Integer age;
 
 	private String phone;
 
-	private int longitude;
+	private Integer longitude;
 
-	private int latitude;
+	private Integer latitude;
 
-	private int countDonates;
+	private Integer countDonates;
 
 	private String bloodType;
 

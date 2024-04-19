@@ -16,10 +16,16 @@ public class HospitalMedicalInfoService {
 	private HospitalMedicalInfoRepo hospitalMedicalInfoRepo;
 	
 	
-	public void updateHospitalStock (String email , String bloodType ,  int amount) {
+	public void incHospitalStock (String email , String bloodType ,  int amount) {
 		
 		logger.info("email is {}  and Blood Type is {}  and amount is {}" , email , bloodType , amount);
-		hospitalMedicalInfoRepo.updateHospitalCounters(email, bloodType, amount);
+		hospitalMedicalInfoRepo.incHospitalCounter(email, bloodType, amount);
+	}
+
+	public void decHospitalStock (String email , String bloodType ,  int amount) {
+
+		logger.info("email is {}  and Blood Type is {}  and amount is {}" , email , bloodType , amount);
+		hospitalMedicalInfoRepo.decHospitalCounter(email, bloodType, amount);
 	}
 
 }

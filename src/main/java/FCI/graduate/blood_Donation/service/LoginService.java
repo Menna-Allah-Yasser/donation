@@ -39,6 +39,7 @@ public class LoginService {
 	}
 	
 	public void updatePassword(String email , String newPass) {
+
 		loginRepo.updatePassword(email, newPass);
 	}
 	

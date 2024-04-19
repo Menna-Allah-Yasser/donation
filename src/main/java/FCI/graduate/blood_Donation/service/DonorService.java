@@ -72,6 +72,57 @@ public class DonorService {
 	 * donorRepo.save(donor); }
 	 */
 
+	public Donor updateDonor(Donor newDonor){
+		Donor oldDonor=donorRepo.getById(newDonor.getEmail());
+
+		if(newDonor.getAge()==null)
+			newDonor.setAge(oldDonor.getAge());
+
+		if(newDonor.getGender()==null)
+			newDonor.setGender(oldDonor.getGender());
+
+		if(newDonor.getBloodType()==null)
+			newDonor.setBloodType(oldDonor.getBloodType());
+
+		if(newDonor.getLatitude()==null)
+			newDonor.setLatitude(oldDonor.getLatitude());
+
+		if(newDonor.getLongitude()==null)
+			newDonor.setLongitude(oldDonor.getLongitude());
+
+		if(newDonor.getPhone()==null)
+			newDonor.setPhone(oldDonor.getPhone());
+
+		if(newDonor.getCountDonates()==null)
+			newDonor.setCountDonates(oldDonor.getCountDonates());
+
+		if(newDonor.getLastName()==null)
+			newDonor.setLastName(oldDonor.getLastName());
+
+		if(newDonor.getFirstName()==null)
+			newDonor.setFirstName(oldDonor.getFirstName());
+
+		if(newDonor.getNationalID()==null)
+			newDonor.setNationalID(oldDonor.getNationalID());
+
+		if(newDonor.getPassword()==null)
+			newDonor.setPassword(oldDonor.getPassword());
+
+		if(newDonor.getSerialNumber()==null)
+			newDonor.setSerialNumber(oldDonor.getSerialNumber());
+
+
+		Login login = new Login(newDonor.getEmail() , newDonor.getPassword() , "donor");
+		newDonor.setUserLogin(login);
+
+		Patient patient = new Patient(newDonor.getEmail() , newDonor.getBloodType());
+		newDonor.setPatient(patient);
+
+		newDonor.setDonorMedicalHistory(oldDonor.getDonorMedicalHistory());
+
+		return donorRepo.save(newDonor);
+	}
+
 	public void updatePassword(String email, String newPass) {
 		loginRepo.updatePassword(email, newPass);
 		donorRepo.updatePassword(email, newPass);

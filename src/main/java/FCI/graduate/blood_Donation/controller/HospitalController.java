@@ -40,6 +40,13 @@ public class HospitalController {
 		return hospitalService.addHospital(hospital);
 	}
 
+
+	@PutMapping()
+	@Operation(summary = "Update Hospital ")
+	public Hospital updateHospital(@RequestBody Hospital newHospital){
+		return hospitalService.updateHospital(newHospital);
+	}
+
 	@PutMapping("/password")
 	@Operation(summary = "Update Hospital Password")
 	public void updatePassword(@RequestParam String email, @RequestParam String newPass) {

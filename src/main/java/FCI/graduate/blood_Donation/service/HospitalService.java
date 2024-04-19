@@ -57,6 +57,45 @@ public class HospitalService {
 		return hospitalRepo.save(hospital);
 	}
 
+	public Hospital updateHospital(Hospital newHospital){
+		Hospital oldHospital = getHospitalByEmail(newHospital.getEmail());
+
+		if(newHospital.getType() == null)
+			newHospital.setType(oldHospital.getType());
+
+		if(newHospital.getPassword() == null)
+			newHospital.setPassword(oldHospital.getPassword());
+
+		if(newHospital.getName()==null)
+			newHospital.setName(oldHospital.getName());
+
+		if(newHospital.getCity() == null)
+			newHospital.setCity(oldHospital.getCity());
+
+		if(newHospital.getLocation() == null)
+			newHospital.setLocation(oldHospital.getLocation());
+
+		if(newHospital.getPhone() == null)
+			newHospital.setPhone(oldHospital.getPhone());
+
+		if(newHospital.getZipCode() == null)
+			newHospital.setZipCode(oldHospital.getZipCode());
+
+		if(newHospital.getLongitude()== null)
+			newHospital.setZipCode(oldHospital.getZipCode());
+
+		if(newHospital.getLatitude() == null)
+			newHospital.setZipCode(oldHospital.getZipCode());
+
+		Login login = new Login(newHospital.getEmail() , newHospital.getPassword() , newHospital.getType());
+		newHospital.setUserLogin(login);
+		newHospital.setHospitalMedicalInfo(oldHospital.getHospitalMedicalInfo());
+
+		logger.info(newHospital.getEmail()+ " "+ newHospital.getName() + newHospital.getPassword()+" "+newHospital.getType()+newHospital.getUserLogin().getType()+" "+newHospital.getUserLogin().getPassword());
+
+		return hospitalRepo.save(newHospital);
+	}
+
 	public void updatePassword(String email, String newPass) {
 		loginRepo.updatePassword(email, newPass);
 		hospitalRepo.updatePassword(email, newPass);

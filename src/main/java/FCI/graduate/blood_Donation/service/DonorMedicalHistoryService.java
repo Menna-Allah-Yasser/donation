@@ -40,7 +40,7 @@ public class DonorMedicalHistoryService {
 		return userMedicalInfoRepo.save(user);
 	}
 
-	public DonorMedicalHistory updateUser(DonorMedicalHistory user) {
+	public DonorMedicalHistory updateDonorMedicalHistory(DonorMedicalHistory user) {
 
 		logger.info("update Donor Medical history");
 

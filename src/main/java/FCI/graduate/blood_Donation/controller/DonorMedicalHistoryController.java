@@ -43,7 +43,7 @@ public class DonorMedicalHistoryController {
 	@PutMapping()
 	@Operation(summary = "Update Donor Medical Information")
 	public DonorMedicalHistory updateDonorMedicalHistory(@RequestBody DonorMedicalHistory user) {
-		return userMedicalInfoService.updateUser(user);
+		return userMedicalInfoService.updateDonorMedicalHistory(user);
 	}
 
 	@PutMapping("/last-donate-time")

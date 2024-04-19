@@ -20,9 +20,17 @@ public class HospitalMedicalInfoController {
 	private HospitalMedicalInfoService hospitalMedicalInfoService;
 	
 	
-	@PutMapping()
-	@Operation(summary = "update hospital stock ")
-	public void updateHospitalStock (@RequestParam String email ,@RequestParam String bloodType , @RequestParam int amount) {
-		hospitalMedicalInfoService.updateHospitalStock(email, bloodType, amount);
+	@PutMapping("/+")
+	@Operation(summary = "increment hospital stock ")
+	public void incHospitalStock (@RequestParam String email ,@RequestParam String bloodType , @RequestParam int amount) {
+		hospitalMedicalInfoService.incHospitalStock(email, bloodType, amount);
 	}
+
+	@PutMapping("/-")
+	@Operation(summary = "decrement hospital stock ")
+	public void decHospitalStock (@RequestParam String email ,@RequestParam String bloodType , @RequestParam int amount) {
+		hospitalMedicalInfoService.decHospitalStock(email, bloodType, amount);
+	}
+
+
 }
