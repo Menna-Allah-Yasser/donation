@@ -1,14 +1,15 @@
 package FCI.graduate.blood_Donation.controller;
 
+import FCI.graduate.blood_Donation.entity.Donor;
+import FCI.graduate.blood_Donation.entity.HospitalMedicalInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import FCI.graduate.blood_Donation.service.HospitalMedicalInfoService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/hospitals/medical-info")
@@ -18,8 +19,12 @@ public class HospitalMedicalInfoController {
 	
 	@Autowired
 	private HospitalMedicalInfoService hospitalMedicalInfoService;
-	
-	
+
+	@GetMapping()
+	@Operation(summary = "get all Hospital-Medical-Info")
+	public List<HospitalMedicalInfo> findAll(){
+		return hospitalMedicalInfoService.findAll();
+	}
 	@PutMapping("/+")
 	@Operation(summary = "increment hospital stock ")
 	public void incHospitalStock (@RequestParam String email ,@RequestParam String bloodType , @RequestParam int amount) {

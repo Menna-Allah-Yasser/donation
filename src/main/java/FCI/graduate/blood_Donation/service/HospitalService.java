@@ -3,6 +3,8 @@ package FCI.graduate.blood_Donation.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import FCI.graduate.blood_Donation.entity.HospitalPatient;
+import io.swagger.v3.oas.annotations.Operation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import FCI.graduate.blood_Donation.entity.Login;
 import FCI.graduate.blood_Donation.mapper.HospitalInfoMapper;
 import FCI.graduate.blood_Donation.repository.HospitalRepo;
 import FCI.graduate.blood_Donation.repository.LoginRepo;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
 public class HospitalService {
@@ -30,6 +33,7 @@ public class HospitalService {
 	@Autowired
 	private HospitalInfoMapper hospitalInfoMapper;
 
+
 	public Hospital getHospitalByEmail(String email) {
 		return hospitalRepo.findById(email).orElseThrow();
 	}
@@ -44,6 +48,10 @@ public class HospitalService {
 		}
 		
 		return hospitalInfoDtos;
+	}
+
+	public List<Hospital> findAll(){
+		return hospitalRepo.findAll();
 	}
 
 	public Hospital addHospital(Hospital hospital) {

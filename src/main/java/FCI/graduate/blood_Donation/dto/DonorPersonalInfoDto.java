@@ -21,15 +21,15 @@ public class DonorPersonalInfoDto {
 
     private String gender;
 
-    private int age;
+    private Integer age;
 
     private String phone;
 
-    private int longitude;
+    private Double longitude;
 
-    private int latitude;
+    private Double latitude;
 
-    private int countDonates;
+    private Integer countDonates;
 
     private String bloodType;
 }

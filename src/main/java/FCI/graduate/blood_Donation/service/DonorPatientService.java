@@ -33,6 +33,9 @@ public class DonorPatientService {
 	/*
 	 * @Autowired private DonorMedicalHistoryService donorMedicalHistoryService;
 	 */
+	public List<DonorPatient> findAll(){
+		return donorPatientRepo.findAll();
+	}
 
 	public DonorPatient addRequest(DonorPatient donorPatient) {
 

@@ -1,5 +1,7 @@
 package FCI.graduate.blood_Donation.service;
 
+import FCI.graduate.blood_Donation.entity.HospitalPatient;
+import io.swagger.v3.oas.annotations.Operation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import FCI.graduate.blood_Donation.exception.UserNotFoundException;
 import FCI.graduate.blood_Donation.entity.DonorMedicalHistory;
 import FCI.graduate.blood_Donation.entity.Donor;
 import FCI.graduate.blood_Donation.repository.LoginRepo;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -20,6 +23,11 @@ public class LoginService {
 
 	@Autowired
 	private LoginRepo loginRepo;
+
+	public List<Login> findAll(){
+
+		return loginRepo.findAll();
+	}
 
 	public Login getUserByEmail(String email) {
 		return loginRepo.findById(email).orElseThrow();

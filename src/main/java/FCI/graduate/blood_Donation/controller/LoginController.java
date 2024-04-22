@@ -1,5 +1,6 @@
 package FCI.graduate.blood_Donation.controller;
 
+import FCI.graduate.blood_Donation.entity.HospitalPatient;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,13 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
+
+	@GetMapping()
+	@Operation(summary = "get all Login")
+	public List<Login> findAll(){
+		return loginService.findAll();
+	}
+
 	@PostMapping("/add")
 	public void addUser(@RequestBody Login user) {
 		loginService.saveLogin(user);
@@ -41,12 +49,12 @@ public class LoginController {
 		loginService.updatePassword(email, newPass);
 	}
 	
-	@GetMapping("")
+	/*@GetMapping("")
 	@Operation(summary = "authentication")
 	public void authen(@RequestParam String email ,@RequestParam String password) {
 		 loginService.authen(email, password);
 	}
-
+*/
 
 	@GetMapping("/emails")
 	@Operation(summary = "get all e-mails in system")

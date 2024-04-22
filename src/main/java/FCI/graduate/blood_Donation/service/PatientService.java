@@ -39,6 +39,7 @@ public class PatientService {
 	@Autowired
 	private HospitalMedicalInfoRepo hospitalMedicalInfoRepo;
 
+
 	public void requestBloodFromDonor(Patient patient) {
 		patientRepo.save(patient);
 		List<Donor> donors = donorRepo.findByBloodType(patient.getBloodType());

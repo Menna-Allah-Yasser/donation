@@ -47,9 +47,9 @@ public class Donor {
 
 	private String phone;
 
-	private Integer longitude;
+	private Double longitude;
 
-	private Integer latitude;
+	private Double latitude;
 
 	private Integer countDonates;
 

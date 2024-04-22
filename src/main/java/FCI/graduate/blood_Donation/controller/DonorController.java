@@ -2,6 +2,7 @@ package FCI.graduate.blood_Donation.controller;
 
 import java.util.List;
 
+import FCI.graduate.blood_Donation.dto.DonorDto;
 import FCI.graduate.blood_Donation.dto.DonorPersonalInfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +28,12 @@ public class DonorController {
 
 	@Autowired
 	private DonorService donorService;
+
+	@GetMapping()
+	@Operation(summary = "get all Donors")
+	public List<DonorPersonalInfoDto> findAll(){
+		return donorService.findAll();
+	}
 
 	@PostMapping("")
 	@Operation(summary = "Add Donor Personal Information ")

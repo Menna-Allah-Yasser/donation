@@ -1,14 +1,14 @@
 package FCI.graduate.blood_Donation.controller;
 
+import FCI.graduate.blood_Donation.entity.DonorPatient;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import FCI.graduate.blood_Donation.service.DonorPatientService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/donor-patient")
@@ -19,6 +19,11 @@ public class DonorPatientController {
 	private DonorPatientService donorPatientService;
 
 
+	@GetMapping()
+	@Operation(summary = "get all donor-patirnt")
+	public List<DonorPatient> findAll(){
+		return donorPatientService.findAll();
+	}
 	@PutMapping()
 	@Operation(summary = "update state_code")
 	public void updateStateCode(@RequestParam Long id ,@RequestParam String newState) {

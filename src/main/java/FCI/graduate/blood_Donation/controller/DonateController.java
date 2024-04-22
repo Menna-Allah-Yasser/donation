@@ -18,6 +18,7 @@ public class DonateController {
     @Autowired
     private DonateService donateService;
 
+
     @PostMapping("")
     @Operation(summary = "add request to donate")
     public void addRequest(@RequestParam  String donorEmail ,@RequestParam String hospitalEmail) {
@@ -31,6 +32,7 @@ public class DonateController {
     }
 
     @GetMapping()
+    @Operation(summary = "get all in donate")
     public List<Donate> findAll(){
        return  donateService.findAll();
     }

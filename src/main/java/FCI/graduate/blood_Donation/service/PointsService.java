@@ -1,16 +1,17 @@
 package FCI.graduate.blood_Donation.service;
 
-import FCI.graduate.blood_Donation.entity.Donate;
-import FCI.graduate.blood_Donation.entity.Donor;
-import FCI.graduate.blood_Donation.entity.Hospital;
-import FCI.graduate.blood_Donation.entity.Points;
+import FCI.graduate.blood_Donation.entity.*;
 import FCI.graduate.blood_Donation.repository.DonorRepo;
 import FCI.graduate.blood_Donation.repository.HospitalRepo;
 import FCI.graduate.blood_Donation.repository.PointsRepo;
+import io.swagger.v3.oas.annotations.Operation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Service
 public class PointsService {
@@ -24,6 +25,10 @@ public class PointsService {
 
     @Autowired
     private HospitalRepo hospitalRepo;
+
+    public List<Points> findAll(){
+        return pointsRepo.findAll();
+    }
 
     public void addRequest(String donorEmail , String hospitalEmail) {
 

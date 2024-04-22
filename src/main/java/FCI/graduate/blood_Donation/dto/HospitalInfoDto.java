@@ -24,9 +24,9 @@ public class HospitalInfoDto {
 
 	private String type;
 	
-	private int longitude;
+	private Double longitude;
 
-	private int latitude;
+	private Double latitude;
 	
 	private HospitalMedicalInfo hospitalMedicalInfo;
 

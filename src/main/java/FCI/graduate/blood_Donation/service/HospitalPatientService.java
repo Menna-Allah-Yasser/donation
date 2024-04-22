@@ -1,5 +1,7 @@
 package FCI.graduate.blood_Donation.service;
 
+import FCI.graduate.blood_Donation.entity.HospitalMedicalInfo;
+import io.swagger.v3.oas.annotations.Operation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,9 @@ import FCI.graduate.blood_Donation.entity.DonorPatient;
 import FCI.graduate.blood_Donation.entity.HospitalPatient;
 import FCI.graduate.blood_Donation.mapper.HospitalMapper;
 import FCI.graduate.blood_Donation.repository.HospitalPatientRepo;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Service
 public class HospitalPatientService {
@@ -25,7 +30,11 @@ public class HospitalPatientService {
 
 	@Autowired
 	private HospitalMedicalInfoService hospitalMedicalInfoService;
-	
+
+
+	public List<HospitalPatient> findAll(){
+		return hospitalPatientRepo.findAll();
+	}
 	public void updateStateCode(Long id , String newState) {
 		hospitalPatientRepo.updateStateCode(id, newState);
 	}

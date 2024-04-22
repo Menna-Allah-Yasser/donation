@@ -1,11 +1,17 @@
 package FCI.graduate.blood_Donation.service;
 
+import FCI.graduate.blood_Donation.entity.Donor;
+import FCI.graduate.blood_Donation.entity.HospitalMedicalInfo;
+import io.swagger.v3.oas.annotations.Operation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import FCI.graduate.blood_Donation.repository.HospitalMedicalInfoRepo;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Service
 public class HospitalMedicalInfoService {
@@ -14,7 +20,11 @@ public class HospitalMedicalInfoService {
 	
 	@Autowired
 	private HospitalMedicalInfoRepo hospitalMedicalInfoRepo;
-	
+
+
+	public List<HospitalMedicalInfo> findAll(){
+		return hospitalMedicalInfoRepo.findAll();
+	}
 	
 	public void incHospitalStock (String email , String bloodType ,  int amount) {
 		

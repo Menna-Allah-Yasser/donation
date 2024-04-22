@@ -1,6 +1,7 @@
 package FCI.graduate.blood_Donation.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +28,12 @@ public class DonorMedicalHistoryController {
 
 	@Autowired
 	private DonorMedicalHistoryService userMedicalInfoService;
+
+	@GetMapping()
+	@Operation(summary = "get all in Donor-Medical-History ")
+	public List<DonorMedicalHistory> getAll(){
+		return userMedicalInfoService.getAll();
+	}
 
 	@GetMapping("/{email}")
 	@Operation(summary = "get Donor Medical History By Email")

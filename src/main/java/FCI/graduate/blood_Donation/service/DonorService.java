@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import FCI.graduate.blood_Donation.dto.DonorDto;
 import FCI.graduate.blood_Donation.dto.DonorPersonalInfoDto;
+import FCI.graduate.blood_Donation.mapper.DonorMapper;
 import FCI.graduate.blood_Donation.mapper.DonorPersonalInfoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,8 +39,20 @@ public class DonorService {
 
 	@Autowired
 	private DonorPersonalInfoMapper donorPersonalInfoMapper;
+
+	@Autowired
+	private DonorMapper donorMapper;
 	
 
+	public List<DonorPersonalInfoDto> findAll(){
+		List<Donor> donor = donorRepo.findAll();
+		List<DonorPersonalInfoDto> donorPersonalInfoDto = new ArrayList<>();
+
+		for(Donor i : donor){
+			donorPersonalInfoDto.add(donorPersonalInfoMapper.map(i));
+		}
+		return donorPersonalInfoDto;
+	}
 	public DonorInfoDto getDonorByEmail(String email) {
 		Donor donor= donorRepo.findById(email).orElseThrow();
 		DonorInfoDto donorInfoDto=donorInfoMapper.map(donor);

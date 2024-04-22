@@ -2,6 +2,8 @@ package FCI.graduate.blood_Donation.service;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class DonorMedicalHistoryService {
 	@Autowired
 	private DonorMedicalHistoryRepo userMedicalInfoRepo;
 
+	public List<DonorMedicalHistory> getAll(){
+		return userMedicalInfoRepo.findAll();
+	}
 	public DonorMedicalHistory getUserByEmail(String email) {
 		return userMedicalInfoRepo.findById(email).orElseThrow();
 	}
