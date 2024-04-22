@@ -29,6 +29,13 @@ public class DonorPatientController {
 	public void updateStateCode(@RequestParam Long id ,@RequestParam String newState) {
 		donorPatientService.updateStateCode(id, newState);
 	}
+
+	@PostMapping()
+	@Operation(summary = "patient send request to donor")
+	public DonorPatient sendRequest(@RequestBody DonorPatient donorPatient) {
+
+		return donorPatientService.addRequest(donorPatient);
+	}
 	
 	/*
 	 * @PutMapping("/statecode/{id}") public DonorDto

@@ -115,4 +115,10 @@ public class DonorController {
 		donorService.deleteUser(email);
 	}
 
+
+	@GetMapping("/match-blood/{bloodType}")
+	@Operation(summary = "get all donors who match input blood-type")
+	List<DonorPersonalInfoDto> getMatchBloodType (@PathVariable String bloodType){
+		return donorService.getMatchBloodType(bloodType);
+	}
 }
