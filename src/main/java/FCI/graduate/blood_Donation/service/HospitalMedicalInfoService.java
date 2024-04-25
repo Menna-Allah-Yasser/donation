@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import FCI.graduate.blood_Donation.repository.HospitalMedicalInfoRepo;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,6 +26,10 @@ public class HospitalMedicalInfoService {
 	public List<HospitalMedicalInfo> findAll(){
 		return hospitalMedicalInfoRepo.findAll();
 	}
+
+	public HospitalMedicalInfo getHospitalMedicalInfoByEmail(String email){
+		return hospitalMedicalInfoRepo.findById(email).orElseThrow();
+	}
 	
 	public void incHospitalStock (String email , String bloodType ,  int amount) {
 		
@@ -36,6 +41,15 @@ public class HospitalMedicalInfoService {
 
 		logger.info("email is {}  and Blood Type is {}  and amount is {}" , email , bloodType , amount);
 		hospitalMedicalInfoRepo.decHospitalCounter(email, bloodType, amount);
+	}
+
+	public List<String> getMatchBloodType (String bloodType){
+		List<HospitalMedicalInfo> hospitalMedicalInfos =hospitalMedicalInfoRepo.getMatchBloodType(bloodType);
+		List <String> emails = new ArrayList<>();
+		for(HospitalMedicalInfo i : hospitalMedicalInfos){
+			emails.add(i.getEmail());
+		}
+		return emails;
 	}
 
 }

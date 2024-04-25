@@ -34,6 +34,7 @@ public class DonateService {
 
         donate.setDonor(donor);
         donate.setHospital(hospital);
+        donate.setStateCode("pending");
 
          donateRepo.save(donate);
 

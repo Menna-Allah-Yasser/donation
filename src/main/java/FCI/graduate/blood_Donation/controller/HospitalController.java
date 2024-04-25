@@ -34,6 +34,11 @@ public class HospitalController {
 		return hospitalService.getAllHospitals();
 	}
 
+	@GetMapping("/{email}")
+	@Operation(summary = " get hospital by email")
+	public Hospital getHospitalByEmail(@PathVariable String email){
+		return hospitalService.getHospitalByEmail(email);
+	}
 	@PostMapping()
 	@Operation(summary = "Add Hospital")
 	public Hospital addHospital(@RequestBody Hospital hospital) {

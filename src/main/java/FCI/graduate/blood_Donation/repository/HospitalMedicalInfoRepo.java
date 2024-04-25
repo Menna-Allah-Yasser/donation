@@ -2,6 +2,7 @@ package FCI.graduate.blood_Donation.repository;
 
 import java.util.List;
 
+import FCI.graduate.blood_Donation.entity.Donor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -92,8 +93,18 @@ public interface HospitalMedicalInfoRepo extends JpaRepository<HospitalMedicalIn
 			+ "h.countABPlus = CASE WHEN :bloodType = 'ABPlus'  AND :amount <= h.countABPlus THEN  h.countABPlus - :amount ELSE h.countABPlus END "
 			+ "WHERE h.email = :email")
 	void decHospitalCounter(String email, String bloodType, int amount);
-	
-	
+
+	@Query("SELECT h FROM HospitalMedicalInfo h WHERE " +
+			"   (:bloodType = 'APlus'   AND (h.countAPlus >0  OR h.countAMin>0    OR h.countOMin >0 OR h.countOPlus >0 )) " +
+			"OR (:bloodType = 'AMinus'  AND (h.countAMin>0    OR h.countOMin >0)) " +
+			"OR (:bloodType = 'OMinus'  AND (h.countOMin >0)) " +
+			"OR (:bloodType = 'OPlus'   AND (h.countOPlus >0  OR h.countOMin >0 )) " +
+			"OR (:bloodType = 'BMinus'  AND (h.countBMin>0    OR h.countOMin>0 )) " +
+			"OR (:bloodType = 'BPlus'   AND (h.countBPlus>0   OR h.countOMin >0   OR h.countBMin>0   OR h.countOPlus >0)) " +
+			"OR (:bloodType = 'ABMinus' AND (h.countABMin>0   OR h.countOMin >0   OR h.countAMin>0   OR h.countBMin>0 )) " +
+			"OR (:bloodType = 'ABPlus'  AND (h.countABPlus >0 OR h.countOMin >0   OR h.countABMin>0  OR h.countOPlus >0 " +
+			                              "OR h.countBMin>0   OR h.countBPlus>0   OR h.countAPlus >0 OR h.countAMin>0 ))")
+	List<HospitalMedicalInfo> getMatchBloodType (String bloodType);
 	
 	
 
