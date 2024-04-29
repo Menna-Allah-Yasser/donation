@@ -118,7 +118,7 @@ public class DonorController {
 
 	@GetMapping("/match-blood/{bloodType}")
 	@Operation(summary = "get all donors who match input blood-type")
-	List<DonorPersonalInfoDto> getMatchBloodType (@PathVariable String bloodType){
+	List<DonorInfoDto> getMatchBloodType (@PathVariable String bloodType){
 		return donorService.getMatchBloodType(bloodType);
 	}
 }

@@ -177,13 +177,13 @@ public class DonorService {
 		donorRepo.updateCountDonates(email, getCountDonates(email)+1);
 	}
 
-	public List<DonorPersonalInfoDto> getMatchBloodType (String bloodType){
+	public List<DonorInfoDto> getMatchBloodType (String bloodType){
 		List<Donor> donors= donorRepo.getMatchBloodType(bloodType);
-		List <DonorPersonalInfoDto> donorPersonalInfoDto = new ArrayList<>();
+		List <DonorInfoDto> donorInfoDtos = new ArrayList<>();
 
 		for(Donor i : donors){
-			donorPersonalInfoDto.add(donorPersonalInfoMapper.map(i));
+			donorInfoDtos.add(donorInfoMapper.map(i));
 		}
-		return donorPersonalInfoDto;
+		return donorInfoDtos;
 	}
 }

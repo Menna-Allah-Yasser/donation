@@ -1,6 +1,8 @@
 package FCI.graduate.blood_Donation.service;
 
-import FCI.graduate.blood_Donation.entity.HospitalMedicalInfo;
+import FCI.graduate.blood_Donation.entity.*;
+import FCI.graduate.blood_Donation.repository.HospitalRepo;
+import FCI.graduate.blood_Donation.repository.PatientRepo;
 import io.swagger.v3.oas.annotations.Operation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +11,6 @@ import org.springframework.stereotype.Service;
 
 import FCI.graduate.blood_Donation.dto.DonorDto;
 import FCI.graduate.blood_Donation.dto.HospitalDto;
-import FCI.graduate.blood_Donation.entity.DonorPatient;
-import FCI.graduate.blood_Donation.entity.HospitalPatient;
 import FCI.graduate.blood_Donation.mapper.HospitalMapper;
 import FCI.graduate.blood_Donation.repository.HospitalPatientRepo;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +31,11 @@ public class HospitalPatientService {
 	@Autowired
 	private HospitalMedicalInfoService hospitalMedicalInfoService;
 
+	@Autowired
+	private PatientRepo patientRepo;
+
+	@Autowired
+	private HospitalRepo hospitalRepo;
 
 	public List<HospitalPatient> findAll(){
 		return hospitalPatientRepo.findAll();
@@ -40,6 +45,18 @@ public class HospitalPatientService {
 	}
 
 
+	public HospitalPatient addRequest(String patientEmail , String hospitalEmail , String statCode){
+
+		    Patient patient= patientRepo.findById(patientEmail).orElseThrow();
+			Hospital hospital = hospitalRepo.findById(hospitalEmail).orElseThrow();
+
+			HospitalPatient hospitalPatient = new HospitalPatient();
+			hospitalPatient.setHospital(hospital);
+			hospitalPatient.setPatient(patient);
+			hospitalPatient.setStateCode(statCode);
+
+			return hospitalPatientRepo.save(hospitalPatient);
+	}
 	/*
 	 * public HospitalDto hospitalAcceptRequest(Long id) {
 	 * hospitalPatientRepo.hospitalAcceptRequest(id);

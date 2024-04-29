@@ -32,6 +32,12 @@ public class HospitalPatientController {
 		hospitalPatientService.updateStateCode(id, newState);
 	}
 
+	@PostMapping()
+	@Operation(summary = "Patient send Request to hospital ")
+	public HospitalPatient addRequest(@RequestParam String patientEmail ,@RequestParam String hospitalEmail ,@RequestParam String statCode){
+		return hospitalPatientService.addRequest(patientEmail , hospitalEmail , statCode);
+	}
+
 	/*
 	 * @PutMapping("/{id}") public HospitalDto hospitalAcceptRequest(@PathVariable
 	 * Long id) { return hospitalPatientService.hospitalAcceptRequest(id); }

@@ -32,9 +32,9 @@ public class DonorPatientController {
 
 	@PostMapping()
 	@Operation(summary = "patient send request to donor")
-	public DonorPatient sendRequest(@RequestBody DonorPatient donorPatient) {
+	public DonorPatient sendRequest(@RequestParam String patientEmail ,@RequestParam String donorEmail ,@RequestParam String statCode) {
 
-		return donorPatientService.addRequest(donorPatient);
+		return donorPatientService.addRequest(patientEmail, donorEmail, statCode);
 	}
 	
 	/*

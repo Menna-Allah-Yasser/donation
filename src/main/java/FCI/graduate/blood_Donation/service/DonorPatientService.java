@@ -4,12 +4,14 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.List;
 
+import FCI.graduate.blood_Donation.entity.*;
+import FCI.graduate.blood_Donation.repository.DonorRepo;
+import FCI.graduate.blood_Donation.repository.PatientRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import FCI.graduate.blood_Donation.entity.DonorPatient;
 import FCI.graduate.blood_Donation.mapper.DonorMapper;
 import FCI.graduate.blood_Donation.repository.DonorPatientRepo;
 
@@ -26,6 +28,12 @@ public class DonorPatientService {
 	
 	@Autowired
 	private DonorMapper donorMapper;
+
+	@Autowired
+	private PatientRepo patientRepo;
+
+	@Autowired
+	private DonorRepo donorRepo;
 	
 	/*
 	 * @Autowired private DonorService donorService;
@@ -37,7 +45,20 @@ public class DonorPatientService {
 		return donorPatientRepo.findAll();
 	}
 
-	public DonorPatient addRequest(DonorPatient donorPatient) {
+	/*public DonorPatient addRequest(DonorPatient donorPatient) {
+
+		return donorPatientRepo.save(donorPatient);
+	}*/
+
+	public DonorPatient addRequest(String patientEmail , String donorEmail , String statCode){
+
+		Patient patient= patientRepo.findById(patientEmail).orElseThrow();
+		Donor donor = donorRepo.findById(donorEmail).orElseThrow();
+
+		DonorPatient donorPatient = new DonorPatient();
+		donorPatient.setDonor(donor);
+		donorPatient.setPatient(patient);
+		donorPatient.setStateCode(statCode);
 
 		return donorPatientRepo.save(donorPatient);
 	}
