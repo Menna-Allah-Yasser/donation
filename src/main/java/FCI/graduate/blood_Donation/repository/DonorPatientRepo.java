@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import FCI.graduate.blood_Donation.entity.DonorPatient;
 
+import java.util.List;
+
 @Repository
 public interface DonorPatientRepo extends JpaRepository<DonorPatient, Long> {
 	
@@ -16,7 +18,15 @@ public interface DonorPatientRepo extends JpaRepository<DonorPatient, Long> {
 	@Transactional
 	@Query("UPDATE DonorPatient d SET d.stateCode = :newState WHERE d.id = :id")
 	void updateStateCode (Long id , String newState);
-	
+
+	@Query("SELECT d FROM DonorPatient d WHERE d.patient.email = :email")
+	List<DonorPatient> getPatientReqs (String email);
+
+	@Query("SELECT d FROM DonorPatient d WHERE d.donor.email = :email AND d.stateCode = :stateCode")
+	List<DonorPatient> getDonorReqs (String email , String stateCode);
+
+
+
 	/*
 	 * @Modifying
 	 * 

@@ -40,6 +40,15 @@ public class HospitalPatientService {
 	public List<HospitalPatient> findAll(){
 		return hospitalPatientRepo.findAll();
 	}
+
+	public List<HospitalPatient> getPatientReqs (String email){
+		return hospitalPatientRepo.getPatientReqs(email);
+	}
+
+	public List<HospitalPatient> getHosReqs (String email , String stateCode){
+		return hospitalPatientRepo.getHosReqs(email , stateCode);
+	}
+
 	public void updateStateCode(Long id , String newState) {
 		hospitalPatientRepo.updateStateCode(id, newState);
 	}
@@ -56,6 +65,10 @@ public class HospitalPatientService {
 			hospitalPatient.setStateCode(statCode);
 
 			return hospitalPatientRepo.save(hospitalPatient);
+	}
+
+	public void cancleReqest (Long id){
+		hospitalPatientRepo.deleteById(id);
 	}
 	/*
 	 * public HospitalDto hospitalAcceptRequest(Long id) {

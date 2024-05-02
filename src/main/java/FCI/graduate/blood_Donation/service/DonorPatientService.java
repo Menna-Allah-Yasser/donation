@@ -50,6 +50,14 @@ public class DonorPatientService {
 		return donorPatientRepo.save(donorPatient);
 	}*/
 
+	public List<DonorPatient> getPatientReqs (String email){
+		return donorPatientRepo.getPatientReqs(email);
+	}
+
+	public List<DonorPatient> getDonorReqs (String email , String stateCode){
+		return donorPatientRepo.getDonorReqs(email , stateCode);
+	}
+
 	public DonorPatient addRequest(String patientEmail , String donorEmail , String statCode){
 
 		Patient patient= patientRepo.findById(patientEmail).orElseThrow();
@@ -67,6 +75,9 @@ public class DonorPatientService {
 		donorPatientRepo.updateStateCode(id, newState);
 	}
 
+	public void cancleReqest (Long id){
+		donorPatientRepo.deleteById(id);
+	}
 	/*
 	 * public DonorDto donorAcceptRequest(Long id) {
 	 * donorPatientRepo.donorAcceptRequest(id);

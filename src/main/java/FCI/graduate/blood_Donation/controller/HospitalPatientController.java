@@ -26,6 +26,18 @@ public class HospitalPatientController {
 		return hospitalPatientService.findAll();
 	}
 
+	@GetMapping("/{email}")
+	@Operation(summary = "get all requests that paient sent to hospital")
+	public List<HospitalPatient> getPatientReqs (@PathVariable String email){
+		return hospitalPatientService.getPatientReqs(email);
+	}
+
+	@GetMapping("/hospital")
+	@Operation(summary = "get specific state-code requests that hospital received")
+	public List<HospitalPatient> getHosReqs (@RequestParam String email ,@RequestParam String stateCode){
+		return hospitalPatientService.getHosReqs(email , stateCode);
+	}
+
 	@PutMapping()
 	@Operation(summary = "update state code")
 	public void updateStateCode(@RequestParam Long id, @RequestParam String newState) {
@@ -36,6 +48,12 @@ public class HospitalPatientController {
 	@Operation(summary = "Patient send Request to hospital ")
 	public HospitalPatient addRequest(@RequestParam String patientEmail ,@RequestParam String hospitalEmail ,@RequestParam String statCode){
 		return hospitalPatientService.addRequest(patientEmail , hospitalEmail , statCode);
+	}
+
+	@DeleteMapping("/{id}")
+	@Operation(summary = "delete request")
+	void cancleReqest (@PathVariable Long id){
+		hospitalPatientService.cancleReqest(id);
 	}
 
 	/*

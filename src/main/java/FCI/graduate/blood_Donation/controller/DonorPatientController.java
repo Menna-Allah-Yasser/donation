@@ -24,6 +24,19 @@ public class DonorPatientController {
 	public List<DonorPatient> findAll(){
 		return donorPatientService.findAll();
 	}
+
+	@GetMapping("/{email}")
+	@Operation(summary = "get all requests that paient sent to donor")
+	public List<DonorPatient> getPatientReqs (@PathVariable String email){
+		return donorPatientService.getPatientReqs(email);
+	}
+
+	@GetMapping("/donor")
+	@Operation(summary = "get specific state-code requests that donor received")
+	public List<DonorPatient> getDonorReqs (@RequestParam String donorEmail ,@RequestParam String stateCode){
+		return donorPatientService.getDonorReqs(donorEmail , stateCode);
+	}
+
 	@PutMapping()
 	@Operation(summary = "update state_code")
 	public void updateStateCode(@RequestParam Long id ,@RequestParam String newState) {
@@ -35,6 +48,12 @@ public class DonorPatientController {
 	public DonorPatient sendRequest(@RequestParam String patientEmail ,@RequestParam String donorEmail ,@RequestParam String statCode) {
 
 		return donorPatientService.addRequest(patientEmail, donorEmail, statCode);
+	}
+
+	@DeleteMapping("/{id}")
+	@Operation(summary = "delete request")
+	public void cancleReqest (@PathVariable Long id){
+		donorPatientService.cancleReqest(id);
 	}
 	
 	/*
