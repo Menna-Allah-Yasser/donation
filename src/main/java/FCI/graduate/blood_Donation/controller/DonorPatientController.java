@@ -55,7 +55,7 @@ public class DonorPatientController {
 	public void cancleReqest (@PathVariable Long id){
 		donorPatientService.cancleReqest(id);
 	}
-	
+
 	/*
 	 * @PutMapping("/statecode/{id}") public DonorDto
 	 * donorAcceptRequest(@PathVariable Long id) {

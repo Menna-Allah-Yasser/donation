@@ -36,4 +36,10 @@ public class DonateController {
     public List<Donate> findAll(){
        return  donateService.findAll();
     }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "delete donation request by id")
+    public void delete(@PathVariable Long id){
+        donateService.delete(id);
+    }
 }

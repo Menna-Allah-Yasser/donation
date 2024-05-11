@@ -73,10 +73,16 @@ public class DonorController {
 	 */
 
 	@PutMapping()
-	@Operation(summary = "Update Donor")
-	public Donor updateDonor(@RequestBody Donor newDonor){
-		return donorService.updateDonor(newDonor);
+	@Operation(summary = "Update Donor Presonal Info")
+	public void updateDonorPersonalInfo(@RequestBody DonorPersonalInfoDto donorPersonalInfoDto){
+		donorService.updateDonorPersonalInfo(donorPersonalInfoDto);
 	}
+
+//	//@PutMapping()
+//	@Operation(summary = "Update Donor")
+//	public Donor updateDonor(@RequestBody Donor newDonor){
+//		return donorService.updateDonor(newDonor);
+//	}
 
 	@PutMapping("/password")
 	@Operation(summary = "Update Donor's Password By E-mail")

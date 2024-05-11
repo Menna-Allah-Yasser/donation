@@ -126,15 +126,57 @@ public class DonorService {
 			newDonor.setSerialNumber(oldDonor.getSerialNumber());
 
 
-		Login login = new Login(newDonor.getEmail() , newDonor.getPassword() , "donor");
-		newDonor.setUserLogin(login);
-
-		Patient patient = new Patient(newDonor.getEmail() , newDonor.getBloodType());
-		newDonor.setPatient(patient);
-
-		newDonor.setDonorMedicalHistory(oldDonor.getDonorMedicalHistory());
+//		Login login = new Login(newDonor.getEmail() , newDonor.getPassword() , "donor");
+//		newDonor.setUserLogin(login);
+//
+//		Patient patient = new Patient(newDonor.getEmail() , newDonor.getBloodType());
+//		newDonor.setPatient(patient);
+//
+//		newDonor.setDonorMedicalHistory(oldDonor.getDonorMedicalHistory());
 
 		return donorRepo.save(newDonor);
+	}
+
+	public void updateDonorPersonalInfo(DonorPersonalInfoDto donorPersonalInfoDto){
+		Donor oldDonor=donorRepo.getById(donorPersonalInfoDto.getEmail());
+		if(donorPersonalInfoDto.getAge()==null)
+			donorPersonalInfoDto.setAge(oldDonor.getAge());
+
+		if(donorPersonalInfoDto.getGender()==null)
+			donorPersonalInfoDto.setGender(oldDonor.getGender());
+
+		if(donorPersonalInfoDto.getBloodType()==null)
+			donorPersonalInfoDto.setBloodType(oldDonor.getBloodType());
+
+		if(donorPersonalInfoDto.getLatitude()==null)
+			donorPersonalInfoDto.setLatitude(oldDonor.getLatitude());
+
+		if(donorPersonalInfoDto.getLongitude()==null)
+			donorPersonalInfoDto.setLongitude(oldDonor.getLongitude());
+
+		if(donorPersonalInfoDto.getPhone()==null)
+			donorPersonalInfoDto.setPhone(oldDonor.getPhone());
+
+		if(donorPersonalInfoDto.getCountDonates()==null)
+			donorPersonalInfoDto.setCountDonates(oldDonor.getCountDonates());
+
+		if(donorPersonalInfoDto.getLastName()==null)
+			donorPersonalInfoDto.setLastName(oldDonor.getLastName());
+
+		if(donorPersonalInfoDto.getFirstName()==null)
+			donorPersonalInfoDto.setFirstName(oldDonor.getFirstName());
+
+		if(donorPersonalInfoDto.getNationalID()==null)
+			donorPersonalInfoDto.setNationalID(oldDonor.getNationalID());
+
+		if(donorPersonalInfoDto.getPassword()==null)
+			donorPersonalInfoDto.setPassword(oldDonor.getPassword());
+
+		if(donorPersonalInfoDto.getSerialNumber()==null)
+			donorPersonalInfoDto.setSerialNumber(oldDonor.getSerialNumber());
+
+		donorRepo.updateDonorPersonalInfo(donorPersonalInfoDto);
+		loginRepo.updatePassword(donorPersonalInfoDto.getEmail() , donorPersonalInfoDto.getPassword());
 	}
 
 	public void updatePassword(String email, String newPass) {

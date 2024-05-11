@@ -2,6 +2,7 @@ package FCI.graduate.blood_Donation.repository;
 
 import java.util.List;
 
+import FCI.graduate.blood_Donation.dto.DonorPersonalInfoDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,6 +13,22 @@ import FCI.graduate.blood_Donation.entity.Donor;
 
 @Repository
 public interface DonorRepo extends JpaRepository<Donor, String> {
+
+	@Modifying
+	@Transactional
+	@Query("UPDATE Donor d SET d.age= :#{#donorPersonalInfoDto.age}," +
+			" d.bloodType=:#{#donorPersonalInfoDto.bloodType}  , d.countDonates = :#{#donorPersonalInfoDto.countDonates}" +
+			" , d.firstName = :#{#donorPersonalInfoDto.firstName} " +
+			", d.lastName=:#{#donorPersonalInfoDto.lastName}" +
+			" , d.gender = :#{#donorPersonalInfoDto.gender}" +
+			" , d.latitude=:#{#donorPersonalInfoDto.latitude} " +
+			", d.longitude= :#{#donorPersonalInfoDto.longitude} " +
+			", d.nationalID=:#{#donorPersonalInfoDto.nationalID} " +
+			", d.password=:#{#donorPersonalInfoDto.password} " +
+			", d.phone=:#{#donorPersonalInfoDto.phone} " +
+			", d.serialNumber=:#{#donorPersonalInfoDto.serialNumber}" +
+			" WHERE d.email = :#{#donorPersonalInfoDto.email}")
+	void updateDonorPersonalInfo(DonorPersonalInfoDto donorPersonalInfoDto);
 
 	@Modifying
 	@Transactional

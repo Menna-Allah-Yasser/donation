@@ -34,7 +34,7 @@ public class DonateService {
 
         donate.setDonor(donor);
         donate.setHospital(hospital);
-        donate.setStateCode("pending");
+        donate.setStateCode("Pending");
 
          donateRepo.save(donate);
 
@@ -49,6 +49,10 @@ public class DonateService {
     public void updateStateCode(Long id , String newState) {
 
         donateRepo.updateStateCode(id, newState);
+    }
+
+    public void delete(Long id){
+        donateRepo.deleteById(id);
     }
 
 }
