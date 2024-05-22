@@ -67,6 +67,16 @@ public class DonorService {
 
 	public Donor addDonor(Donor donor) {
 
+		if(donor.getCountDonates()==null)
+			donor.setCountDonates(null);
+		if(donor.getLongitude()==null)
+			donor.setLongitude(0.0);
+		if(donor.getLatitude()==null)
+			donor.setLatitude(0.0);
+		if(donor.getAge()==null)
+			donor.setAge(18);
+
+
 		Login login = new Login(donor.getEmail(), donor.getPassword() , "donor");
 		donor.setUserLogin(login);
 

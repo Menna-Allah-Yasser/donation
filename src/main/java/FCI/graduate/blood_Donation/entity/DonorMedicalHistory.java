@@ -44,12 +44,12 @@ public class DonorMedicalHistory {
 	@Column(name = "chronic_disease")
 	private String chronicDisease /* = "false" */;
 
-	private LocalDate lastDonateTime = LocalDate.now();
+	private LocalDate lastDonateTime =null;
 
 	@LastModifiedDate
 	private LocalDate lastModifiedDate;
 
-	private String note;
+	private String note=null;
 
 	private String legalToDonate ;
 

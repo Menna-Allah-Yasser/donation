@@ -38,10 +38,7 @@ public class DonorMedicalHistoryService {
 
 		if (user.getSurgery() == null)
 			user.setSurgery("false");
-
-		if (user.getLastDonateTime() == null)
-			user.setLastDonateTime(LocalDate.now());
-
+		
 		return userMedicalInfoRepo.save(user);
 	}
 
