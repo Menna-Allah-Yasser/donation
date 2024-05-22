@@ -55,6 +55,12 @@ public class DonorMedicalHistoryService {
 		if (user.getNote() == null) {
 			user.setNote(oldUser.getNote());
 		}
+		else{
+			if(oldUser.getNote()!=null)
+			user.setNote(oldUser.getNote()+" "+user.getNote());
+
+
+		}
 
 		if (user.getChronicDisease() == null) {
 			user.setChronicDisease(oldUser.getChronicDisease());
