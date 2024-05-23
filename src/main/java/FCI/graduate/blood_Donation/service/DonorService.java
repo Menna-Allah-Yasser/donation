@@ -68,7 +68,7 @@ public class DonorService {
 	public Donor addDonor(Donor donor) {
 
 		if(donor.getCountDonates()==null)
-			donor.setCountDonates(null);
+			donor.setCountDonates(0);
 		if(donor.getLongitude()==null)
 			donor.setLongitude(0.0);
 		if(donor.getLatitude()==null)
