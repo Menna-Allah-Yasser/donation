@@ -2,8 +2,10 @@ package FCI.graduate.blood_Donation.service;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+import FCI.graduate.blood_Donation.dto.DonorInfoDto;
 import FCI.graduate.blood_Donation.entity.*;
 import FCI.graduate.blood_Donation.repository.DonorRepo;
 import FCI.graduate.blood_Donation.repository.PatientRepo;
@@ -34,6 +36,9 @@ public class DonorPatientService {
 
 	@Autowired
 	private DonorRepo donorRepo;
+
+	@Autowired
+	private DonorService donorService;
 	
 	/*
 	 * @Autowired private DonorService donorService;
@@ -54,8 +59,20 @@ public class DonorPatientService {
 		return donorPatientRepo.getPatientReqs(email);
 	}
 
-	public List<DonorPatient> getDonorReqs (String email , String stateCode){
-		return donorPatientRepo.getDonorReqs(email , stateCode);
+	public List<DonorInfoDto> getDonorReqs (String email , String stateCode){
+		List<DonorPatient> donorPatients= donorPatientRepo.getDonorReqs(email , stateCode);
+
+		List<DonorInfoDto> donors= new ArrayList<>();
+		List<Patient> patients = new ArrayList<>();
+
+		for(DonorPatient donorPatient : donorPatients){
+			patients.add(donorPatient.getPatient());
+		}
+		for(Patient i : patients){
+			donors.add(donorService.getDonorByEmail(i.getEmail()));
+		}
+		return donors;
+
 	}
 
 	public DonorPatient addRequest(String patientEmail , String donorEmail , String statCode){

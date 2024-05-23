@@ -1,5 +1,6 @@
 package FCI.graduate.blood_Donation.controller;
 
+import FCI.graduate.blood_Donation.dto.DonorInfoDto;
 import FCI.graduate.blood_Donation.entity.DonorPatient;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -33,7 +34,7 @@ public class DonorPatientController {
 
 	@GetMapping("/donor")
 	@Operation(summary = "get specific state-code requests that donor received")
-	public List<DonorPatient> getDonorReqs (@RequestParam String donorEmail ,@RequestParam String stateCode){
+	public List<DonorInfoDto> getDonorReqs (@RequestParam String donorEmail , @RequestParam String stateCode){
 		return donorPatientService.getDonorReqs(donorEmail , stateCode);
 	}
 
