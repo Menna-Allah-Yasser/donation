@@ -57,6 +57,10 @@ public class PatientService {
 		}
 	}
 
+	public void updatePatientBloodType(String email , String bloodType){
+		 patientRepo.updatePatientBloodType(email , bloodType);
+	}
+
 	public void requestBloodFromHospital(Patient patient) {
 		patientRepo.save(patient);
 		List<HospitalMedicalInfo> hospitals = hospitalMedicalInfoRepo.findByBloodType(patient.getBloodType());

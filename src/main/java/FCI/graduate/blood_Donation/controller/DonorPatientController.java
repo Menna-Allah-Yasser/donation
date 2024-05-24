@@ -2,6 +2,8 @@ package FCI.graduate.blood_Donation.controller;
 
 import FCI.graduate.blood_Donation.dto.DonorInfoDto;
 import FCI.graduate.blood_Donation.entity.DonorPatient;
+import FCI.graduate.blood_Donation.entity.Hospital;
+import FCI.graduate.blood_Donation.entity.Patient;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +36,20 @@ public class DonorPatientController {
 
 	@GetMapping("/donor")
 	@Operation(summary = "get specific state-code requests that donor received")
-	public List<DonorInfoDto> getDonorReqs (@RequestParam String donorEmail , @RequestParam String stateCode){
+	public List<Patient> getDonorReqs (@RequestParam String donorEmail , @RequestParam String stateCode){
 		return donorPatientService.getDonorReqs(donorEmail , stateCode);
+	}
+
+	@GetMapping("/user")
+	@Operation(summary = "get specific state-code user requests that donor received")
+	public List<DonorInfoDto> getRecivedReqDonors (@RequestParam String donorEmail , @RequestParam String stateCode){
+		return donorPatientService.getRecivedReqDonors(donorEmail , stateCode);
+	}
+
+	@GetMapping("/hospital")
+	@Operation(summary = "get specific state-code hospital requests that donor received")
+	public List<Hospital> getRecivedReqHospitals (@RequestParam String donorEmail , @RequestParam String stateCode){
+		return donorPatientService.getRecivedReqHospitals(donorEmail , stateCode);
 	}
 
 	@PutMapping()

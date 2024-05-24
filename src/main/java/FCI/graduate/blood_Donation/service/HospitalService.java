@@ -3,7 +3,7 @@ package FCI.graduate.blood_Donation.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import FCI.graduate.blood_Donation.entity.HospitalPatient;
+import FCI.graduate.blood_Donation.entity.*;
 import io.swagger.v3.oas.annotations.Operation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import FCI.graduate.blood_Donation.dto.HospitalInfoDto;
-import FCI.graduate.blood_Donation.entity.Hospital;
-import FCI.graduate.blood_Donation.entity.HospitalMedicalInfo;
-import FCI.graduate.blood_Donation.entity.Login;
 import FCI.graduate.blood_Donation.mapper.HospitalInfoMapper;
 import FCI.graduate.blood_Donation.repository.HospitalRepo;
 import FCI.graduate.blood_Donation.repository.LoginRepo;
@@ -61,6 +58,10 @@ public class HospitalService {
 
 		HospitalMedicalInfo hospitalMedicalInfo = new HospitalMedicalInfo(hospital.getEmail(), 0, 0, 0, 0, 0, 0, 0, 0);
 		hospital.setHospitalMedicalInfo(hospitalMedicalInfo);
+
+		Patient patient = new Patient(hospital.getEmail());
+		patient.setType("hospital");
+		hospital.setPatient(patient);
 
 		return hospitalRepo.save(hospital);
 	}

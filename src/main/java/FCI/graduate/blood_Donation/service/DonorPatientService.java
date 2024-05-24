@@ -39,6 +39,9 @@ public class DonorPatientService {
 
 	@Autowired
 	private DonorService donorService;
+
+	@Autowired
+	private HospitalService hospitalService;
 	
 	/*
 	 * @Autowired private DonorService donorService;
@@ -59,20 +62,41 @@ public class DonorPatientService {
 		return donorPatientRepo.getPatientReqs(email);
 	}
 
-	public List<DonorInfoDto> getDonorReqs (String email , String stateCode){
-		List<DonorPatient> donorPatients= donorPatientRepo.getDonorReqs(email , stateCode);
+	public List<Patient> getDonorReqs (String email , String stateCode){
 
-		List<DonorInfoDto> donors= new ArrayList<>();
+		List<DonorPatient> donorPatients= donorPatientRepo.getDonorReqs(email , stateCode);
 		List<Patient> patients = new ArrayList<>();
 
 		for(DonorPatient donorPatient : donorPatients){
 			patients.add(donorPatient.getPatient());
 		}
+
+		return patients;
+
+	}
+
+	public List<DonorInfoDto> getRecivedReqDonors (String email , String stateCode ){
+		List<Patient> patients = getDonorReqs(email , stateCode);
+		List<DonorInfoDto> donors= new ArrayList<>();
+
 		for(Patient i : patients){
-			donors.add(donorService.getDonorByEmail(i.getEmail()));
+			if(i.getType().equals("user"))
+			 donors.add(donorService.getDonorByEmail(i.getEmail()));
+
 		}
 		return donors;
+	}
 
+	public List<Hospital> getRecivedReqHospitals (String email , String stateCode){
+		List<Patient> patients = getDonorReqs(email , stateCode);
+		List<Hospital> hospitals= new ArrayList<>();
+
+		for(Patient i : patients){
+			if(i.getType().equals("hospital"))
+				hospitals.add(hospitalService.getHospitalByEmail(i.getEmail()));
+
+		}
+		return hospitals;
 	}
 
 	public DonorPatient addRequest(String patientEmail , String donorEmail , String statCode){

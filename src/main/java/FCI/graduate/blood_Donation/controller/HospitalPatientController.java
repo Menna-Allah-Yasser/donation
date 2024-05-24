@@ -1,5 +1,7 @@
 package FCI.graduate.blood_Donation.controller;
 
+import FCI.graduate.blood_Donation.dto.DonorInfoDto;
+import FCI.graduate.blood_Donation.entity.Hospital;
 import FCI.graduate.blood_Donation.entity.HospitalMedicalInfo;
 import FCI.graduate.blood_Donation.entity.HospitalPatient;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,10 +34,22 @@ public class HospitalPatientController {
 		return hospitalPatientService.getPatientReqs(email);
 	}
 
-	@GetMapping("/hospital")
+	/*@GetMapping("/hospital")
 	@Operation(summary = "get specific state-code requests that hospital received")
 	public List<HospitalPatient> getHosReqs (@RequestParam String email ,@RequestParam String stateCode){
 		return hospitalPatientService.getHosReqs(email , stateCode);
+	}*/
+
+	@GetMapping("/user")
+	@Operation(summary = "get specific state-code user requests that hospital received")
+	public List<DonorInfoDto> getRecivedReqDonors (@RequestParam String hosEmail , @RequestParam String stateCode){
+		return hospitalPatientService.getRecivedReqDonors(hosEmail , stateCode);
+	}
+
+	@GetMapping("/hospital")
+	@Operation(summary = "get specific state-code hospital requests that hospital received")
+	public List<Hospital> getRecivedReqHospitals (@RequestParam String hosEmail , @RequestParam String stateCode){
+		return hospitalPatientService.getRecivedReqHospitals(hosEmail , stateCode);
 	}
 
 	@PutMapping()

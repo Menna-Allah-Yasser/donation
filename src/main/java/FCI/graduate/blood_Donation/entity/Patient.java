@@ -31,6 +31,8 @@ public class Patient {
 
 	private String bloodType;
 
+	private String type;
+
 	
 
 }

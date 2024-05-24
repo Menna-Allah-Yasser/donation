@@ -56,4 +56,9 @@ public class Hospital {
 	@JoinColumn(name = "email")
 	private HospitalMedicalInfo hospitalMedicalInfo;
 
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@MapsId
+	@JoinColumn(name = "email")
+	private Patient patient;
+
 }

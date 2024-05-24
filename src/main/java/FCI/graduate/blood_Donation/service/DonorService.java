@@ -84,6 +84,7 @@ public class DonorService {
 		donor.setDonorMedicalHistory(donorMedicalHistory);
 
 		Patient patient = new Patient(donor.getEmail());
+		patient.setType("user");
 		donor.setPatient(patient);
 
 		return donorRepo.save(donor);

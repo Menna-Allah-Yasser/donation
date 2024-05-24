@@ -1,5 +1,6 @@
 package FCI.graduate.blood_Donation.service;
 
+import FCI.graduate.blood_Donation.dto.DonorInfoDto;
 import FCI.graduate.blood_Donation.entity.*;
 import FCI.graduate.blood_Donation.repository.HospitalRepo;
 import FCI.graduate.blood_Donation.repository.PatientRepo;
@@ -15,6 +16,7 @@ import FCI.graduate.blood_Donation.mapper.HospitalMapper;
 import FCI.graduate.blood_Donation.repository.HospitalPatientRepo;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,6 +39,12 @@ public class HospitalPatientService {
 	@Autowired
 	private HospitalRepo hospitalRepo;
 
+	@Autowired
+	private DonorService donorService;
+
+	@Autowired
+	private HospitalService hospitalService;
+
 	public List<HospitalPatient> findAll(){
 		return hospitalPatientRepo.findAll();
 	}
@@ -45,9 +53,42 @@ public class HospitalPatientService {
 		return hospitalPatientRepo.getPatientReqs(email);
 	}
 
-	public List<HospitalPatient> getHosReqs (String email , String stateCode){
-		return hospitalPatientRepo.getHosReqs(email , stateCode);
+	public List<Patient> getHosReqs (String email , String stateCode){
+		List<HospitalPatient> hospitalPatients= hospitalPatientRepo.getHosReqs(email , stateCode);
+		List<Patient> patients = new ArrayList<>();
+
+		for(HospitalPatient hospitalPatient : hospitalPatients){
+			patients.add(hospitalPatient.getPatient());
+		}
+
+		return patients;
+
 	}
+
+	public List<DonorInfoDto> getRecivedReqDonors (String email , String stateCode ){
+		List<Patient> patients = getHosReqs(email , stateCode);
+		List<DonorInfoDto> donors= new ArrayList<>();
+
+		for(Patient i : patients){
+			if(i.getType().equals("user"))
+				donors.add(donorService.getDonorByEmail(i.getEmail()));
+
+		}
+		return donors;
+	}
+
+	public List<Hospital> getRecivedReqHospitals (String email , String stateCode){
+		List<Patient> patients = getHosReqs(email , stateCode);
+		List<Hospital> hospitals= new ArrayList<>();
+
+		for(Patient i : patients){
+			if(i.getType().equals("hospital"))
+				hospitals.add(hospitalService.getHospitalByEmail(i.getEmail()));
+
+		}
+		return hospitals;
+	}
+
 
 	public void updateStateCode(Long id , String newState) {
 		hospitalPatientRepo.updateStateCode(id, newState);

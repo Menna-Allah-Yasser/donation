@@ -5,12 +5,7 @@ import java.util.List;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import FCI.graduate.blood_Donation.entity.Patient;
 import FCI.graduate.blood_Donation.service.PatientService;
@@ -47,7 +42,11 @@ public class PatientController {
 	public void requestBloodFromHospital(@RequestBody Patient patient) {
 		patientService.requestBloodFromHospital(patient);
 	}
-	
+
+	@PutMapping("/{email}/{bloodType}")
+	public void updatePatientBloodType(@PathVariable String email ,@PathVariable String bloodType){
+		 patientService.updatePatientBloodType(email , bloodType);
+	}
 	
 	
 	
