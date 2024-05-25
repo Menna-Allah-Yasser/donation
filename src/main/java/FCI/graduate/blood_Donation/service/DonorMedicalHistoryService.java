@@ -107,33 +107,43 @@ public class DonorMedicalHistoryService {
 	public void updateLegalToDonate(String email) {
 
 		DonorMedicalHistory donorMedicalHistory = getUserByEmail(email);
-		long monthsDifference = ChronoUnit.MONTHS.between(donorMedicalHistory.getLastDonateTime(), LocalDate.now());
+		if(donorMedicalHistory.getLastDonateTime() == null){
+			if (donorMedicalHistory.getChronicDisease().equals("false") && donorMedicalHistory.getDentist().equals("false"))
+				donorMedicalHistory.setLegalToDonate("true");
+			else
+				donorMedicalHistory.setLegalToDonate("false");
+		}
+		else {
+			long monthsDifference = ChronoUnit.MONTHS.between(donorMedicalHistory.getLastDonateTime(), LocalDate.now());
 
-		if (donorMedicalHistory.getChronicDisease().equals("false") && donorMedicalHistory.getDentist().equals("false")
-				&& donorMedicalHistory.getSurgery().equals("false") && monthsDifference > 3.0) {
+			if (donorMedicalHistory.getChronicDisease().equals("false") && donorMedicalHistory.getDentist().equals("false")
+					&& donorMedicalHistory.getSurgery().equals("false") && monthsDifference > 3.0) {
 
-			donorMedicalHistory.setLegalToDonate("true");
-			userMedicalInfoRepo.updateLegalToDonate(donorMedicalHistory.getEmail(),
-					donorMedicalHistory.getLegalToDonate());
+				donorMedicalHistory.setLegalToDonate("true");
+			/*	userMedicalInfoRepo.updateLegalToDonate(donorMedicalHistory.getEmail(),
+						donorMedicalHistory.getLegalToDonate());*/
 
-			logger.info(
-					"email is {} , legal {} , monthsDifference is {} , ChronicDisease is{} , dentist is  {} , surgery is {}",
-					donorMedicalHistory.getEmail(), donorMedicalHistory.getLegalToDonate(), monthsDifference,
-					donorMedicalHistory.getChronicDisease(), donorMedicalHistory.getDentist(),
-					donorMedicalHistory.getSurgery());
-		} else {
+				logger.info(
+						"email is {} , legal {} , monthsDifference is {} , ChronicDisease is{} , dentist is  {} , surgery is {}",
+						donorMedicalHistory.getEmail(), donorMedicalHistory.getLegalToDonate(), monthsDifference,
+						donorMedicalHistory.getChronicDisease(), donorMedicalHistory.getDentist(),
+						donorMedicalHistory.getSurgery());
+			} else {
 
-			donorMedicalHistory.setLegalToDonate("false");
-			userMedicalInfoRepo.updateLegalToDonate(donorMedicalHistory.getEmail(),
-					donorMedicalHistory.getLegalToDonate());
+				donorMedicalHistory.setLegalToDonate("false");
+				/*userMedicalInfoRepo.updateLegalToDonate(donorMedicalHistory.getEmail(),
+						donorMedicalHistory.getLegalToDonate());*/
 
-			logger.info(
-					"email is {} , legal {} , monthsDifference is {} , ChronicDisease is{} , dentist is  {} , surgery is {}",
-					donorMedicalHistory.getEmail(), donorMedicalHistory.getLegalToDonate(), monthsDifference,
-					donorMedicalHistory.getChronicDisease(), donorMedicalHistory.getDentist(),
-					donorMedicalHistory.getSurgery());
+				logger.info(
+						"email is {} , legal {} , monthsDifference is {} , ChronicDisease is{} , dentist is  {} , surgery is {}",
+						donorMedicalHistory.getEmail(), donorMedicalHistory.getLegalToDonate(), monthsDifference,
+						donorMedicalHistory.getChronicDisease(), donorMedicalHistory.getDentist(),
+						donorMedicalHistory.getSurgery());
+			}
 		}
 
+		userMedicalInfoRepo.updateLegalToDonate(donorMedicalHistory.getEmail(),
+				donorMedicalHistory.getLegalToDonate());
 	}
 
 	//@Scheduled(cron = "0 0 0 1 */3 ?")
