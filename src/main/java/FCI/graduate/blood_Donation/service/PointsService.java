@@ -45,10 +45,10 @@ public class PointsService {
 //         logger.info("id : "+ points.getId());
 //    }
 
-//    public void updatePoints(String donorEmail , String hospitalEmail , int points){
-//
-//        pointsRepo.updatePoints(donorEmail , hospitalEmail , points);
-//    }
+    public void updatePoints(String donorEmail , int points){
+
+        pointsRepo.updatePoints(donorEmail , points);
+    }
 
 
 }
