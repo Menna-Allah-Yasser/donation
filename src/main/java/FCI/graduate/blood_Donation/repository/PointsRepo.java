@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface PointsRepo extends JpaRepository<Points, Long> {
 
-    @Modifying
-    @Transactional
-    @Query("UPDATE Points p SET p.points =p.points + :point WHERE p.donor.email = :donorEmail AND p.hospital.email= :hospitalEmail")
-    void updatePoints (String donorEmail , String hospitalEmail , int point);
+//    @Modifying
+//    @Transactional
+//    @Query("UPDATE Points p SET p.points =p.points + :point WHERE p.donor.email = :donorEmail AND p.hospital.email= :hospitalEmail")
+//    void updatePoints (String donorEmail , String hospitalEmail , int point);
 
 }

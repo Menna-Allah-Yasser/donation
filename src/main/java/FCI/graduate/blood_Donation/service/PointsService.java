@@ -30,25 +30,25 @@ public class PointsService {
         return pointsRepo.findAll();
     }
 
-    public void addRequest(String donorEmail , String hospitalEmail) {
+//    public void addRequest(String donorEmail , String hospitalEmail) {
+//
+//        Points points= new Points();
+//
+//        Donor donor= donorRepo.getById(donorEmail);
+//        Hospital hospital=hospitalRepo.getById(hospitalEmail);
+//
+//        points.setDonor(donor);
+//        points.setHospital(hospital);
+//
+//         pointsRepo.save(points);
+//
+//         logger.info("id : "+ points.getId());
+//    }
 
-        Points points= new Points();
-
-        Donor donor= donorRepo.getById(donorEmail);
-        Hospital hospital=hospitalRepo.getById(hospitalEmail);
-
-        points.setDonor(donor);
-        points.setHospital(hospital);
-
-         pointsRepo.save(points);
-
-         logger.info("id : "+ points.getId());
-    }
-
-    public void updatePoints(String donorEmail , String hospitalEmail , int points){
-
-        pointsRepo.updatePoints(donorEmail , hospitalEmail , points);
-    }
+//    public void updatePoints(String donorEmail , String hospitalEmail , int points){
+//
+//        pointsRepo.updatePoints(donorEmail , hospitalEmail , points);
+//    }
 
 
 }

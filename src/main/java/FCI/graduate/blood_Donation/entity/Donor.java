@@ -70,4 +70,9 @@ public class Donor {
 	@JoinColumn(name = "email")
 	private Patient patient;
 
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@MapsId
+	@JoinColumn(name = "email")
+	private Points points;
+
 }

@@ -25,14 +25,14 @@ public class PointsController {
         return pointsService.findAll();
     }
 
-    @PostMapping
-    public void addRequest(@RequestParam String donorEmail ,@RequestParam String hospitalEmail) {
-        pointsService.addRequest( donorEmail ,hospitalEmail);
-    }
-    @PutMapping("")
-    @Operation(summary = "update points by positive or negative value ")
-    public void updatePoints(@RequestParam String donorEmail ,@RequestParam String hospitalEmail ,@RequestParam int points){
-
-        pointsService.updatePoints(donorEmail , hospitalEmail , points);
-    }
+//    @PostMapping
+//    public void addRequest(@RequestParam String donorEmail ,@RequestParam String hospitalEmail) {
+//        pointsService.addRequest( donorEmail ,hospitalEmail);
+//    }
+//    @PutMapping("")
+//    @Operation(summary = "update points by positive or negative value ")
+//    public void updatePoints(@RequestParam String donorEmail ,@RequestParam String hospitalEmail ,@RequestParam int points){
+//
+//        pointsService.updatePoints(donorEmail , hospitalEmail , points);
+//    }
 }

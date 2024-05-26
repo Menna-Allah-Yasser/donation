@@ -7,6 +7,7 @@ import java.util.List;
 
 import FCI.graduate.blood_Donation.dto.DonorDto;
 import FCI.graduate.blood_Donation.dto.DonorPersonalInfoDto;
+import FCI.graduate.blood_Donation.entity.*;
 import FCI.graduate.blood_Donation.mapper.DonorMapper;
 import FCI.graduate.blood_Donation.mapper.DonorPersonalInfoMapper;
 import org.slf4j.Logger;
@@ -14,12 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import FCI.graduate.blood_Donation.entity.Login;
-import FCI.graduate.blood_Donation.entity.Patient;
 import FCI.graduate.blood_Donation.mapper.DonorInfoMapper;
 import FCI.graduate.blood_Donation.dto.DonorInfoDto;
-import FCI.graduate.blood_Donation.entity.Donor;
-import FCI.graduate.blood_Donation.entity.DonorMedicalHistory;
 import FCI.graduate.blood_Donation.repository.LoginRepo;
 import FCI.graduate.blood_Donation.repository.DonorRepo;
 
@@ -86,6 +83,9 @@ public class DonorService {
 		Patient patient = new Patient(donor.getEmail());
 		patient.setType("user");
 		donor.setPatient(patient);
+
+		Points point = new Points(donor.getEmail() , 100);
+		donor.setPoints(point);
 
 		return donorRepo.save(donor);
 

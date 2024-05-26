@@ -15,20 +15,24 @@ import lombok.Setter;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Points {
+//
+//	@Id
+//	@NonNull
+//	@GeneratedValue(strategy = GenerationType.AUTO)
+//	private Long id;
+//
+//
+//	@ManyToOne
+//	private Donor donor;
+//
+//
+//	@ManyToOne
+//	private Hospital hospital;
+//
 
 	@Id
 	@NonNull
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	
-
-	@ManyToOne
-	private Donor donor;
-	
-
-	@ManyToOne
-	private Hospital hospital;
-	
+	private String email;
 
 	private int points;
 }
