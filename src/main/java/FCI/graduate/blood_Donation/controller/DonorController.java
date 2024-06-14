@@ -29,6 +29,12 @@ public class DonorController {
 	@Autowired
 	private DonorService donorService;
 
+	@GetMapping("/d/{email}")
+	@Operation(summary = "get  Donor ")
+	public Donor getDonor(@PathVariable String email){
+		return donorService.getDonor(email);
+	}
+
 	@GetMapping()
 	@Operation(summary = "get all Donors")
 	public List<DonorPersonalInfoDto> findAll(){

@@ -9,6 +9,7 @@ import FCI.graduate.blood_Donation.dto.DonorInfoDto;
 import FCI.graduate.blood_Donation.entity.*;
 import FCI.graduate.blood_Donation.repository.DonorRepo;
 import FCI.graduate.blood_Donation.repository.PatientRepo;
+import org.antlr.v4.runtime.misc.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,7 @@ public class DonorPatientService {
 		List<Patient> patients = new ArrayList<>();
 
 		for(DonorPatient donorPatient : donorPatients){
+			donorPatient.getPatient().setBloodType(donorPatient.getBloodType());
 			patients.add(donorPatient.getPatient());
 		}
 
@@ -75,25 +77,25 @@ public class DonorPatientService {
 
 	}
 
-	public List<DonorInfoDto> getRecivedReqDonors (String email , String stateCode ){
+	public List<Pair<DonorInfoDto , String>> getRecivedReqDonors (String email , String stateCode ){
 		List<Patient> patients = getDonorReqs(email , stateCode);
-		List<DonorInfoDto> donors= new ArrayList<>();
+		List<Pair<DonorInfoDto , String>> donors= new ArrayList<>();
 
 		for(Patient i : patients){
 			if(i.getType().equals("user"))
-			 donors.add(donorService.getDonorByEmail(i.getEmail()));
+			 donors.add(new Pair<>( donorService.getDonorByEmail(i.getEmail()) , i.getBloodType()));
 
 		}
 		return donors;
 	}
 
-	public List<Hospital> getRecivedReqHospitals (String email , String stateCode){
+	public List<Pair <Hospital , String >> getRecivedReqHospitals (String email , String stateCode){
 		List<Patient> patients = getDonorReqs(email , stateCode);
-		List<Hospital> hospitals= new ArrayList<>();
+		List<Pair <Hospital , String >> hospitals= new ArrayList<>();
 
 		for(Patient i : patients){
 			if(i.getType().equals("hospital"))
-				hospitals.add(hospitalService.getHospitalByEmail(i.getEmail()));
+				hospitals.add(new Pair <> (hospitalService.getHospitalByEmail(i.getEmail()) , i.getBloodType()));
 
 		}
 		return hospitals;

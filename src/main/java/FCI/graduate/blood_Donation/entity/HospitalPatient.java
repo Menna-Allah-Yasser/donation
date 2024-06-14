@@ -23,6 +23,8 @@ public class HospitalPatient {
 
 	private String stateCode;
 
+	private String bloodType;
+
 	@ManyToOne
 	private Hospital hospital;
 

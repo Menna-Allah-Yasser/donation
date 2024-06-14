@@ -56,6 +56,10 @@ public class DonorService {
 		return donorInfoDto;
 	}
 
+	public Donor getDonor(String email) {
+		return donorRepo.findById(email).orElseThrow();
+	}
+
 	public DonorPersonalInfoDto getDonorPersonalInfoByEmail(String email){
 		Donor donor= donorRepo.findById(email).orElseThrow();
 		DonorPersonalInfoDto donorPersonalInfoDto=donorPersonalInfoMapper.map(donor);

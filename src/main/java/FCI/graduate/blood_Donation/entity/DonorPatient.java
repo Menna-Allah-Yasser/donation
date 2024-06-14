@@ -31,6 +31,8 @@ public class DonorPatient {
 	 
 	private String stateCode;
 
+	private String bloodType;
+
 	@ManyToOne
 	private Donor donor;
 	

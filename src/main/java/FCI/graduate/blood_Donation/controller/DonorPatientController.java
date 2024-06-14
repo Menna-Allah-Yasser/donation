@@ -6,6 +6,7 @@ import FCI.graduate.blood_Donation.entity.Hospital;
 import FCI.graduate.blood_Donation.entity.Patient;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.antlr.v4.runtime.misc.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,13 +43,13 @@ public class DonorPatientController {
 
 	@GetMapping("/user")
 	@Operation(summary = "get specific state-code user requests that donor received")
-	public List<DonorInfoDto> getRecivedReqDonors (@RequestParam String donorEmail , @RequestParam String stateCode){
+	public List<Pair<DonorInfoDto , String >> getRecivedReqDonors (@RequestParam String donorEmail , @RequestParam String stateCode){
 		return donorPatientService.getRecivedReqDonors(donorEmail , stateCode);
 	}
 
 	@GetMapping("/hospital")
 	@Operation(summary = "get specific state-code hospital requests that donor received")
-	public List<Hospital> getRecivedReqHospitals (@RequestParam String donorEmail , @RequestParam String stateCode){
+	public List<Pair <Hospital , String >> getRecivedReqHospitals (@RequestParam String donorEmail , @RequestParam String stateCode){
 		return donorPatientService.getRecivedReqHospitals(donorEmail , stateCode);
 	}
 

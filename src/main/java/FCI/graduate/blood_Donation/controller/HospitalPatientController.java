@@ -6,6 +6,7 @@ import FCI.graduate.blood_Donation.entity.HospitalMedicalInfo;
 import FCI.graduate.blood_Donation.entity.HospitalPatient;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.antlr.v4.runtime.misc.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import FCI.graduate.blood_Donation.dto.HospitalDto;
 import FCI.graduate.blood_Donation.service.HospitalPatientService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/hospital-patient")
@@ -42,13 +44,13 @@ public class HospitalPatientController {
 
 	@GetMapping("/user")
 	@Operation(summary = "get specific state-code user requests that hospital received")
-	public List<DonorInfoDto> getRecivedReqDonors (@RequestParam String hosEmail , @RequestParam String stateCode){
+	public List<Pair<DonorInfoDto , String>> getRecivedReqDonors (@RequestParam String hosEmail , @RequestParam String stateCode){
 		return hospitalPatientService.getRecivedReqDonors(hosEmail , stateCode);
 	}
 
 	@GetMapping("/hospital")
 	@Operation(summary = "get specific state-code hospital requests that hospital received")
-	public List<Hospital> getRecivedReqHospitals (@RequestParam String hosEmail , @RequestParam String stateCode){
+	public List<Pair <Hospital , String>> getRecivedReqHospitals (@RequestParam String hosEmail , @RequestParam String stateCode){
 		return hospitalPatientService.getRecivedReqHospitals(hosEmail , stateCode);
 	}
 
@@ -60,8 +62,8 @@ public class HospitalPatientController {
 
 	@PostMapping()
 	@Operation(summary = "Patient send Request to hospital ")
-	public HospitalPatient addRequest(@RequestParam String patientEmail ,@RequestParam String hospitalEmail ,@RequestParam String statCode){
-		return hospitalPatientService.addRequest(patientEmail , hospitalEmail , statCode);
+	public HospitalPatient addRequest(@RequestParam String patientEmail ,@RequestParam String hospitalEmail ,@RequestParam String statCode , @RequestParam String bloodType){
+		return hospitalPatientService.addRequest(patientEmail , hospitalEmail , statCode , bloodType);
 	}
 
 	@DeleteMapping("/{id}")

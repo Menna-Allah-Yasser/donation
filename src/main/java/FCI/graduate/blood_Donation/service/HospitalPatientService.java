@@ -5,6 +5,7 @@ import FCI.graduate.blood_Donation.entity.*;
 import FCI.graduate.blood_Donation.repository.HospitalRepo;
 import FCI.graduate.blood_Donation.repository.PatientRepo;
 import io.swagger.v3.oas.annotations.Operation;
+import org.antlr.v4.runtime.misc.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,10 @@ import FCI.graduate.blood_Donation.mapper.HospitalMapper;
 import FCI.graduate.blood_Donation.repository.HospitalPatientRepo;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class HospitalPatientService {
@@ -58,6 +61,7 @@ public class HospitalPatientService {
 		List<Patient> patients = new ArrayList<>();
 
 		for(HospitalPatient hospitalPatient : hospitalPatients){
+			hospitalPatient.getPatient().setBloodType(hospitalPatient.getBloodType());
 			patients.add(hospitalPatient.getPatient());
 		}
 
@@ -65,25 +69,25 @@ public class HospitalPatientService {
 
 	}
 
-	public List<DonorInfoDto> getRecivedReqDonors (String email , String stateCode ){
+	public List<Pair<DonorInfoDto , String>> getRecivedReqDonors (String email , String stateCode ){
 		List<Patient> patients = getHosReqs(email , stateCode);
-		List<DonorInfoDto> donors= new ArrayList<>();
+		List<Pair<DonorInfoDto , String>> donors= new ArrayList<>();
 
 		for(Patient i : patients){
 			if(i.getType().equals("user"))
-				donors.add(donorService.getDonorByEmail(i.getEmail()));
+				donors.add(new Pair<>(donorService.getDonorByEmail(i.getEmail()) , i.getBloodType()));
 
 		}
 		return donors;
 	}
 
-	public List<Hospital> getRecivedReqHospitals (String email , String stateCode){
+	public List<Pair <Hospital , String>> getRecivedReqHospitals (String email , String stateCode){
 		List<Patient> patients = getHosReqs(email , stateCode);
-		List<Hospital> hospitals= new ArrayList<>();
+		List<Pair <Hospital , String>> hospitals= new ArrayList<>();
 
 		for(Patient i : patients){
 			if(i.getType().equals("hospital"))
-				hospitals.add(hospitalService.getHospitalByEmail(i.getEmail()));
+				hospitals.add(new Pair<>(hospitalService.getHospitalByEmail(i.getEmail()) , i.getBloodType()));
 
 		}
 		return hospitals;
@@ -95,7 +99,7 @@ public class HospitalPatientService {
 	}
 
 
-	public HospitalPatient addRequest(String patientEmail , String hospitalEmail , String statCode){
+	public HospitalPatient addRequest(String patientEmail , String hospitalEmail , String statCode , String bloodType){
 
 		    Patient patient= patientRepo.findById(patientEmail).orElseThrow();
 			Hospital hospital = hospitalRepo.findById(hospitalEmail).orElseThrow();
@@ -104,6 +108,7 @@ public class HospitalPatientService {
 			hospitalPatient.setHospital(hospital);
 			hospitalPatient.setPatient(patient);
 			hospitalPatient.setStateCode(statCode);
+			hospitalPatient.setBloodType(bloodType);
 
 			return hospitalPatientRepo.save(hospitalPatient);
 	}
