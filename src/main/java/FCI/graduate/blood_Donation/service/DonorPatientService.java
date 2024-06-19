@@ -1,7 +1,5 @@
 package FCI.graduate.blood_Donation.service;
 
-import java.sql.Time;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,7 +99,7 @@ public class DonorPatientService {
 		return hospitals;
 	}
 
-	public DonorPatient addRequest(String patientEmail , String donorEmail , String statCode){
+	public DonorPatient addRequest(String patientEmail , String donorEmail , String statCode, String bloodType){
 
 		Patient patient= patientRepo.findById(patientEmail).orElseThrow();
 		Donor donor = donorRepo.findById(donorEmail).orElseThrow();
@@ -110,6 +108,7 @@ public class DonorPatientService {
 		donorPatient.setDonor(donor);
 		donorPatient.setPatient(patient);
 		donorPatient.setStateCode(statCode);
+		donorPatient.setBloodType(bloodType);
 
 		return donorPatientRepo.save(donorPatient);
 	}

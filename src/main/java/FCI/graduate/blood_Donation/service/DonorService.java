@@ -86,6 +86,7 @@ public class DonorService {
 
 		Patient patient = new Patient(donor.getEmail());
 		patient.setType("user");
+		patient.setBloodType(donor.getBloodType());
 		donor.setPatient(patient);
 
 		Points point = new Points(donor.getEmail() , 100);

@@ -61,9 +61,9 @@ public class DonorPatientController {
 
 	@PostMapping()
 	@Operation(summary = "patient send request to donor")
-	public DonorPatient sendRequest(@RequestParam String patientEmail ,@RequestParam String donorEmail ,@RequestParam String statCode) {
+	public DonorPatient sendRequest(@RequestParam String patientEmail ,@RequestParam String donorEmail ,@RequestParam String statCode ,@RequestParam String bloodType) {
 
-		return donorPatientService.addRequest(patientEmail, donorEmail, statCode);
+		return donorPatientService.addRequest(patientEmail, donorEmail, statCode , bloodType);
 	}
 
 	@DeleteMapping("/{id}")
