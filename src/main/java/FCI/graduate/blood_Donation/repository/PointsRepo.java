@@ -14,4 +14,7 @@ public interface PointsRepo extends JpaRepository<Points, Long> {
     @Query("UPDATE Points p SET p.points =p.points + :point WHERE p.email = :donorEmail ")
     void updatePoints (String donorEmail , int point);
 
+    @Query("SELECT p FROM Points p WHERE p.email =:email")
+    Points getPointsByEmail(String email);
+
 }

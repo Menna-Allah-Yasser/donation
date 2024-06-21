@@ -25,6 +25,12 @@ public class PointsController {
         return pointsService.findAll();
     }
 
+    @GetMapping("/{email}")
+    @Operation(summary = "get donor points by email")
+    public int getPointsByEmail(@PathVariable String email){
+        return pointsService.getPointsByEmail(email);
+    }
+
 //    @PostMapping
 //    public void addRequest(@RequestParam String donorEmail ,@RequestParam String hospitalEmail) {
 //        pointsService.addRequest( donorEmail ,hospitalEmail);

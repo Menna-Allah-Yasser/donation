@@ -30,6 +30,13 @@ public class PointsService {
         return pointsRepo.findAll();
     }
 
+
+    public int getPointsByEmail(String email){
+        Points point= pointsRepo.getPointsByEmail(email);
+        int res=point.getPoints();
+        return res;
+    }
+
 //    public void addRequest(String donorEmail , String hospitalEmail) {
 //
 //        Points points= new Points();
